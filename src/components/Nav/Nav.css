@@ -1,11 +1,17 @@
+header {
+  height: 60px;
+}
+
 .nav {
   /* flex box layout */
+  position: fixed;
+  width: 100%;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin: 0 0 30px;
-  background-color: #00acb0;
+  
+  background-color: #750004;
   overflow: hidden;
 }
 
@@ -24,7 +30,7 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #750004;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -38,5 +44,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #701e20;
 }

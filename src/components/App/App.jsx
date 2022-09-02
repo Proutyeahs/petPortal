@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Grid from '@material-ui/core/Grid';
 
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <Grid>
     <Router>
       <div>
         <Nav />
@@ -118,6 +120,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </Grid>
   );
 }
 
