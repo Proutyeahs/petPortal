@@ -9,7 +9,7 @@ footer {
 }
 
 .back {
-  display: inline-block;
+  
   color: #f2f2f2;
   background-color: #750004;
   float: left;
@@ -44,7 +44,7 @@ footer {
 }
 
 .about {
-  display: inline-block;
+  
   color: #f2f2f2;
   background-color: #750004;
   float: right;
