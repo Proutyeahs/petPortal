@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import species from './species.reducer'
 import pet from './pet.reducer'
+import details from './details.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,9 +13,10 @@ import pet from './pet.reducer'
 // This is what we get when we use 'state' inside of 'mapStateToProps'
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
-  user,
+  user, // will have an id and username if someone is logged in
   species,
-  pet, // will have an id and username if someone is logged in
+  pet, 
+  details,
 });
 
 export default rootReducer;

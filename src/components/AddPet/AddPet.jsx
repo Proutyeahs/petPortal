@@ -15,7 +15,7 @@ function AddPet() {
     const allSpecies = useSelector((store) => store.species);
 
     const [image, setImage] = useState("")
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 2 })
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 2, cloud_id: '' })
 
     const uploadImage = () => {
         console.log(image)
@@ -23,8 +23,8 @@ function AddPet() {
         formData.append("file", image)
         formData.append("upload_preset", "PetEats")
         axios.post("https://api.cloudinary.com/v1_1/dzyea2237/image/upload", formData).then((response) => {
-            console.log('yo', response.data.url)
-            setPet({ ...pet, picture: response.data.url })
+            console.log('yo', response.data)
+            setPet({ ...pet, picture: response.data.url, cloud_id: response.data.public_id})
         })
     }
 

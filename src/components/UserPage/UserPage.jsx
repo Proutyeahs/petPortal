@@ -1,33 +1,45 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {Image} from 'cloudinary-react'
+import { Image } from 'cloudinary-react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import './UserPage.css'
 
 function UserPage() {
-  
+
   useEffect(() => {
     dispatch({
-      type : 'GET_PET'
+      type: 'GET_PET'
     })
   }, [])
-  
+
   const pets = useSelector((store) => store.pet)
   const user = useSelector((store) => store.user);
 
   const history = useHistory()
   const dispatch = useDispatch()
 
+  const details = (id) => {
+    console.log(id)
+    dispatch({
+        type : 'GET_DETAILS',
+        payload: id
+    })
+    history.push(`/petdetails/${id}`)
+}
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
-      <button onClick={()=> history.push('/addpet')}>Add Pet</button>
+      <button onClick={() => history.push('/addpet')}>Add Pet</button>
       {pets.map(pet => (
-        <Image key={pet.id} cloudName="dzyea2237" publicId={pet.picture}/* save image to database and pass the saved url in here *//>
+        <div key={pet.id}>
+          <Image onClick={() => details(pet.id)} className="img" cloudName="dzyea2237" publicId={pet.picture} />
+        </div>
       ))}
     </div>
   );
