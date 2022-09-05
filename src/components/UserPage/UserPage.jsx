@@ -2,7 +2,6 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Image } from 'cloudinary-react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './UserPage.css'
@@ -38,7 +37,7 @@ function UserPage() {
       <button onClick={() => history.push('/addpet')}>Add Pet</button>
       {pets.map(pet => (
         <div key={pet.id}>
-          <Image onClick={() => details(pet.id)} className="img" cloudName="dzyea2237" publicId={pet.picture} />
+          <img onClick={() => details(pet.id)} className="img" src={pet.picture} />
         </div>
       ))}
     </div>

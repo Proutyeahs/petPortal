@@ -2,6 +2,7 @@ import axios from 'axios';
 import { put, take, takeLatest } from 'redux-saga/effects';
 
 function* deletePet(action) {
+    console.log(action.payload)
     try{
         yield axios.delete(`/api/pet/${action.payload}`)
         yield put({type : 'GET_PET'})

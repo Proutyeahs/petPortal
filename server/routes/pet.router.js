@@ -16,12 +16,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         "picture", 
         "description", 
         "birthday", 
-        "species_id",
-        "cloud_id"
+        "species_id"
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7);
+    VALUES ($1, $2, $3, $4, $5, $6);
     `
-    pool.query(query, [req.user.id, req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species, req.body.cloud_id])
+    pool.query(query, [req.user.id, req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species])
     .then( result => {
         res.sendStatus(201);
     }).catch (err => {
@@ -60,7 +59,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
-router.delete(':id', rejectUnauthenticated, (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         DELETE FROM "pets"
         WHERE "id" = $1
