@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Grid from '@material-ui/core/Grid';
 import AddPet from '../AddPet/AddPet';
 import PetDetails from '../PetDetails/PetDetails';
+import EditPet from '../EditPet/EditPet';
 
 import './App.css';
 
@@ -84,6 +85,13 @@ function App() {
             path="/petdetails/:id"
           >
             <PetDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/editpet/:id"
+          >
+            <EditPet />
           </ProtectedRoute>
 
           <Route
