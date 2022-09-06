@@ -1,17 +1,26 @@
-.div {
+.div1 {
     height: 150px;
     width: 150px;
     margin: 5px;
     display: inline-block;
 }
 
-.img {
+.img1 {
     height: 150px;
     width: auto;
 }
 
 .inline {
+    padding: 10px;
     vertical-align: top;
     display: inline-block;
     text-align: center;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
 }

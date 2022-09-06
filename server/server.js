@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const speciesRouter = require('./routes/species.router')
 const petRouter = require('./routes/pet.router')
+const foodRouter = require('./routes/food.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/species', speciesRouter)
 app.use('/api/pet', petRouter)
+app.use('/api/food', foodRouter)
 
 // Serve static files
 app.use(express.static('build'));

@@ -36,8 +36,8 @@ function PetDetails() {
             <div className="container">
                 {details.map(detail => (
                     <div key={detail.id}>
-                        <Card className='div'>
-                            <CardMedia className="img" image={detail.picture} />
+                        <Card className='div1'>
+                            <CardMedia className="img1" image={detail.picture} />
                         </Card>
                         <span className='inline'>
                             <h3>{detail.name}</h3>
@@ -45,14 +45,17 @@ function PetDetails() {
                             <p>{detail.birthday}</p>
                         </span>
                         <p>{detail.description}</p>
-                        <Button variant="outlined" color="primary" onClick={() => handleEdit(id)}>Edit Pet</Button>
+                        <Button className='left' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
+                        <Button className='right' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
                     </div>
                 ))}
-                <ul>
-                    <li>notes about feeding</li>
-                    <li>TBD</li>
-                </ul>
             </div>
+            <br></br>
+            <ul>
+                <li>notes about feeding</li>
+                <li>TBD</li>
+            </ul>
+
         </>
     )
 }

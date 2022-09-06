@@ -23,6 +23,7 @@ import Grid from '@material-ui/core/Grid';
 import AddPet from '../AddPet/AddPet';
 import PetDetails from '../PetDetails/PetDetails';
 import EditPet from '../EditPet/EditPet';
+import AddFeeding from '../AddFeeding/AddFeeding';
 
 import './App.css';
 
@@ -92,6 +93,13 @@ function App() {
             path="/editpet/:id"
           >
             <EditPet />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/addfeeding/:id"
+          >
+            <AddFeeding />
           </ProtectedRoute>
 
           <Route
