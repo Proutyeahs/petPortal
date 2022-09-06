@@ -20,11 +20,16 @@ function PetDetails() {
             type: 'GET_DETAILS',
             payload: id
         })
+        dispatch({
+            type: 'GET_NOTES',
+            payload: id
+        })
     }
 
     const history = useHistory()
     const dispatch = useDispatch()
     const details = useSelector((store) => store.details)
+    const notes = useSelector((store) => store.notes)
 
     const handleEdit = (id) => {
         console.log(id)
@@ -51,10 +56,13 @@ function PetDetails() {
                 ))}
             </div>
             <br></br>
-            <ul>
-                <li>notes about feeding</li>
-                <li>TBD</li>
-            </ul>
+            {notes.map(note => (
+                <div>
+                    <p>{note.food_name}</p>
+                    <p>{note.date}</p>
+                    <p>{note.notes}</p>
+                </div>
+            ))}
 
         </>
     )
