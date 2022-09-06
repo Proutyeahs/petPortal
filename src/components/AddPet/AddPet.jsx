@@ -25,7 +25,7 @@ function AddPet() {
 
     const allSpecies = useSelector((store) => store.species);
 
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 0 })
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 1 })
     const [open, setOpen] = React.useState(false);
     const [newSpecies, setNewSpecies] = React.useState({ name: '' });
 
@@ -67,7 +67,6 @@ function AddPet() {
                                 <option key={species.id} value={species.id}>{species.species_name}</option>
                             ))}
                         </NativeSelect>
-
                     </FormControl>
                     <div>
                         <div className="padding">

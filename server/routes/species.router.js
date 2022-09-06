@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   const query =`
     SELECT * FROM "species"
+    ORDER BY "id"
   ;`;
   pool.query(query).then(result => {
     console.log("hi", result.rows)

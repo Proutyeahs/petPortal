@@ -12,17 +12,30 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import './AddFeeding.css'
 
 function AddFeeding() {
 
+    const history = useHistory()
     const dispatch = useDispatch();
 
     useEffect(() => {
+        reload(id)
         dispatch({ type: 'GET_FOOD' })
     }, [])
 
-    const [newFood, setNewFood] = useState({food: ''})
-    const [currentFood, setCurrentFood] = useState({type: ''})
+    let { id } = useParams()
+
+    const reload = (id) => {
+        console.log(id)
+        dispatch({
+            type: 'GET_NOTES',
+            payload: id
+        })
+    }
+
+    const [newFood, setNewFood] = useState({ food: '' })
+    const [notes, setNotes] = useState({pet_id: id, food: '', date: '', note: '' })
     const [open, setOpen] = React.useState(false);
 
     const allFoods = useSelector((store) => store.foods);
@@ -41,23 +54,33 @@ function AddFeeding() {
             payload: newFood
         })
         handleClose()
-        setNewFood({food: '' })
+        setNewFood({ food: '' })
     }
 
-    return(
+    const addNotes = () => {
+        console.log(notes)
+        dispatch({
+            type: 'POST_NOTE',
+            payload: notes
+        })
+        setTimeout(() => { history.push(`/petdetails/${id}`) }, 500)
+    }
+
+    return (
         <>
-            <h3>Add Feeding</h3>
-            <div className="padding">
+            <div className="align">
+                <h3>Add Feeding</h3>
+                <div className="padding1">
                     <FormControl variant="filled">
                         <InputLabel></InputLabel>
-                        <NativeSelect onChange={(e) => setCurrentFood({food: e.target.value })}>
+                        <NativeSelect onChange={(e) => setNotes({...notes, food: e.target.value })}>
                             {allFoods.map(food => (
                                 <option key={food.id} value={food.id}>{food.food_name}</option>
                             ))}
                         </NativeSelect>
                     </FormControl>
                     <div>
-                        <div className="padding">
+                        <div className="padding1">
                             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Food</Button>
                         </div>
                     </div>
@@ -75,7 +98,17 @@ function AddFeeding() {
                             </Button>
                         </DialogActions>
                     </Dialog>
+                    <div className="padding1">
+                        <TextField type="text" value={notes.date} placeholder="Date" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
+                    </div>
+                    <div className="padding1">
+                        <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />
+                    </div>
+                    <div className="padding1">
+                        <Button variant="outlined" color="primary" onClick={addNotes}>Add Notes</Button>
+                    </div>
                 </div>
+            </div>
         </>
     )
 }
