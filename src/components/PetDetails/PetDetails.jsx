@@ -28,6 +28,9 @@ function PetDetails() {
             type: 'DELETE_PET',
             payload: id
         })
+        setTimeout(() => {
+            history.push('/')
+        }, 500)
     }
 
     const handleEdit = (id) => {

@@ -1,4 +1,3 @@
-const { query } = require('express');
 const express = require('express');
 const {
   rejectUnauthenticated,
@@ -67,6 +66,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     pool.query(query, [req.params.id]).then(result => {
         res.sendStatus(200)
     }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log("sup", req.params.id)
+    const query =`
+        UPDATE "pets"
+        SET "name" = $1, "picture" = $2, "description" = $3, "birthday" = $4, "species_id" = $5
+        WHERE "id" = $6
+    ;`;
+    pool.query(query, [req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species, req.body.id])
+    .then(result => {
+        res.sendStatus(200)
+    }).catch( err => {
         console.log(err)
         res.sendStatus(500)
     })

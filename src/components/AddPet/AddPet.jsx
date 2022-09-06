@@ -14,7 +14,7 @@ function AddPet() {
 
     const allSpecies = useSelector((store) => store.species);
 
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 2})
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 0})
 
 
     const addPet = () => {

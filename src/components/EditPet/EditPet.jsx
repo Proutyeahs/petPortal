@@ -24,7 +24,7 @@ function EditPet() {
     const details = useSelector((store) => store.details)
     const allSpecies = useSelector((store) => store.species);
 
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '', id: id })
 
     const editPet = () => {
         for (let detail of details) {
@@ -45,12 +45,17 @@ function EditPet() {
                 pet.species = detail.species_id
             }
         }
+    }
+
+    const done = () => {
         console.log(pet)
-        dispatch({
-            type: 'EDIT_PET',
-            payload: pet
-        })
-        return setTimeout(() => { history.push('/') }, 500)
+        setTimeout(() => {
+            dispatch({
+                type: 'EDIT_PET',
+                payload: pet
+            })
+            history.push('/')
+        }, 500)
     }
 
     return (
@@ -71,7 +76,9 @@ function EditPet() {
                 <div>
                     <p>Make sure all your data is correct</p>
                 </div>
-                <button onClick={editPet}>Edit Pet and Return Home</button>
+                <div onClick={done}>
+                    <button onClick={editPet}>Save Pet</button>
+                </div>
             </div>
         </>
     )
