@@ -10,8 +10,19 @@ function* getSpecies() {
   }
 }
 
+function* postNewSpecies(action) {
+    console.log(action.payload)
+    try {
+        yield axios.post('/api/species', action.payload)
+        yield put({ type: 'GET_SPECIES'})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 function* speciesSaga() {
   yield takeLatest('GET_SPECIES', getSpecies);
+  yield takeLatest('POST_NEWSPECIES', postNewSpecies)
 }
 
 export default speciesSaga;

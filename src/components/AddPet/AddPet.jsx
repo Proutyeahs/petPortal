@@ -1,7 +1,18 @@
 import axios from "axios"
+import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import './AddPet.css'
 
 function AddPet() {
@@ -14,8 +25,16 @@ function AddPet() {
 
     const allSpecies = useSelector((store) => store.species);
 
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 0})
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 0 })
+    const [open, setOpen] = React.useState(false);
+    const [newSpecies, setNewSpecies] = React.useState({name: ''});
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const addPet = () => {
         console.log(pet)
@@ -26,25 +45,66 @@ function AddPet() {
         setTimeout(() => { history.push('/') }, 500)
     }
 
+    const addSpecies = () => {
+        console.log(newSpecies)
+        dispatch({
+            type: 'POST_NEWSPECIES',
+            payload : newSpecies
+        })
+        handleClose()
+        setNewSpecies({name: ''})
+    }
+
     return (
         <>
             <div className="align">
                 <h3>Add A New Pet</h3>
-                <div>
-                    <select onChange={(e) => setPet({ ...pet, species: e.target.value })}>
-                        {allSpecies.map(species => (
-                            <option key={species.id} value={species.id}>{species.species_name}</option>
-                        ))}
-                    </select>
+                <div className="padding">
+                    <FormControl variant="filled">
+                        <InputLabel></InputLabel>
+                        <NativeSelect onChange={(e) => setPet({ ...pet, species: e.target.value })}>
+                            {allSpecies.map(species => (
+                                <option key={species.id} value={species.id}>{species.species_name}</option>
+                            ))}
+                        </NativeSelect>
+                        
+                    </FormControl>
+                    <div>
+                        <div className="padding">
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Species</Button>
+                        </div>
+                    </div>
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Add New Species</DialogTitle>
+                        <DialogContent>
+                            <TextField type="text" value={newSpecies.name} placeholder="species" onChange={(e) => setNewSpecies({name : e.target.value})} />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button variant="outlined" color="secondary" onClick={handleClose}>
+                                Cancel
+                            </Button>
+                            <Button variant="outlined" color="primary" onClick={addSpecies}>
+                                Ok
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+
                 </div>
-                <input type="text" value={pet.name} placeholder="Name" onChange={(e) => setPet({ ...pet, name: e.target.value })} />
-                <input type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
-                <input type="text" value={pet.birthday} placeholder="Birthday" onChange={(e) => setPet({ ...pet, birthday: e.target.value })} />
-                <input type="text" value={pet.picture} placeholder="URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
-                <div>
-                    <p>Make sure all your data is correct</p>
+                <div className="padding">
+                    <TextField type="text" value={pet.name} placeholder="Name" onChange={(e) => setPet({ ...pet, name: e.target.value })} />
                 </div>
-                <button onClick={addPet}>Add Pet and Return Home</button>
+                <div className="padding">
+                    <TextField type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
+                </div>
+                <div className="padding">
+                    <TextField type="text" value={pet.birthday} placeholder="Birthday" onChange={(e) => setPet({ ...pet, birthday: e.target.value })} />
+                </div>
+                <div className="padding">
+                    <TextField type="text" value={pet.picture} placeholder="URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
+                </div>
+                <div className="padding">
+                    <Button variant="outlined" color="primary" onClick={addPet}>Add Pet</Button>
+                </div>
             </div>
         </>
     )

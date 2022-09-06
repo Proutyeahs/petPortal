@@ -1,4 +1,15 @@
+.div {
+    height: 100px;
+    width: 100px;
+    margin: 3px;
+    display: inline-block;
+}
+
 .img {
     height: 100px;
     width: auto;
+}
+
+.text {
+    text-align: center;
 }
