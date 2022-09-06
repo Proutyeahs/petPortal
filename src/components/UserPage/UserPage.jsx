@@ -41,9 +41,9 @@ function UserPage() {
         <Button variant="outlined" color="primary" onClick={() => history.push('/addpet')}>Add Pet</Button>
       </div>
       {pets.map(pet => (
-        <Card className='div' key={pet.id}>
+        <Card onClick={() => details(pet.id)}  className='div' key={pet.id}>
           {pet.picture &&
-            <CardMedia onClick={() => details(pet.id)} className="img" image={pet.picture} />
+            <CardMedia className="img" image={pet.picture} />
           } 
           {!pet.picture && 
             <h5 className='text'>{pet.name}</h5>

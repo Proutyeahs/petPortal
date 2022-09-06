@@ -2,6 +2,10 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import './PetDetails.css'
 
 function PetDetails() {
 
@@ -22,17 +26,6 @@ function PetDetails() {
     const dispatch = useDispatch()
     const details = useSelector((store) => store.details)
 
-    const handleDelete = (id) => {
-        console.log(id)
-        dispatch({
-            type: 'DELETE_PET',
-            payload: id
-        })
-        setTimeout(() => {
-            history.push('/')
-        }, 500)
-    }
-
     const handleEdit = (id) => {
         console.log(id)
         history.push(`/editpet/${id}`)
@@ -41,15 +34,18 @@ function PetDetails() {
     return (
         <>
             <div className="container">
-            <button onClick={() => handleDelete(id)}>Delete</button>
-            <button onClick={() => handleEdit(id)}>Edit Pet</button>
                 {details.map(detail => (
                     <div key={detail.id}>
-                        <h3>{detail.name}</h3>
-                        <p>{detail.species_name}</p>
-                        <h6>{detail.birthday}</h6>
-                        <img src={detail.picture} />
+                        <Card className='div'>
+                            <CardMedia className="img" image={detail.picture} />
+                        </Card>
+                        <span className='inline'>
+                            <h3>{detail.name}</h3>
+                            <h5>{detail.species_name}</h5>
+                            <p>{detail.birthday}</p>
+                        </span>
                         <p>{detail.description}</p>
+                        <Button variant="outlined" color="primary" onClick={() => handleEdit(id)}>Edit Pet</Button>
                     </div>
                 ))}
                 <ul>
