@@ -23,8 +23,26 @@ function AddFeeding() {
 
     const [newFood, setNewFood] = useState({food: ''})
     const [currentFood, setCurrentFood] = useState({type: ''})
+    const [open, setOpen] = React.useState(false);
 
     const allFoods = useSelector((store) => store.foods);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const addFood = () => {
+        console.log(setNewFood)
+        dispatch({
+            type: 'POST_NEWFOOD',
+            payload: newFood
+        })
+        handleClose()
+        setNewFood({food: '' })
+    }
 
     return(
         <>
@@ -37,8 +55,26 @@ function AddFeeding() {
                                 <option key={food.id} value={food.id}>{food.food_name}</option>
                             ))}
                         </NativeSelect>
-
                     </FormControl>
+                    <div>
+                        <div className="padding">
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Food</Button>
+                        </div>
+                    </div>
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Add New Food</DialogTitle>
+                        <DialogContent>
+                            <TextField type="text" value={newFood.food} placeholder="food" onChange={(e) => setNewFood({ food: e.target.value })} />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button variant="outlined" color="secondary" onClick={handleClose}>
+                                Cancel
+                            </Button>
+                            <Button variant="outlined" color="primary" onClick={addFood}>
+                                Ok
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
                 </div>
         </>
     )

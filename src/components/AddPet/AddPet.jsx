@@ -27,7 +27,7 @@ function AddPet() {
 
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 0 })
     const [open, setOpen] = React.useState(false);
-    const [newSpecies, setNewSpecies] = React.useState({name: ''});
+    const [newSpecies, setNewSpecies] = React.useState({ name: '' });
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -49,10 +49,10 @@ function AddPet() {
         console.log(newSpecies)
         dispatch({
             type: 'POST_NEWSPECIES',
-            payload : newSpecies
+            payload: newSpecies
         })
         handleClose()
-        setNewSpecies({name: ''})
+        setNewSpecies({ name: '' })
     }
 
     return (
@@ -67,7 +67,7 @@ function AddPet() {
                                 <option key={species.id} value={species.id}>{species.species_name}</option>
                             ))}
                         </NativeSelect>
-                        
+
                     </FormControl>
                     <div>
                         <div className="padding">
@@ -77,7 +77,7 @@ function AddPet() {
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle>Add New Species</DialogTitle>
                         <DialogContent>
-                            <TextField type="text" value={newSpecies.name} placeholder="species" onChange={(e) => setNewSpecies({name : e.target.value})} />
+                            <TextField type="text" value={newSpecies.name} placeholder="species" onChange={(e) => setNewSpecies({ name: e.target.value })} />
                         </DialogContent>
                         <DialogActions>
                             <Button variant="outlined" color="secondary" onClick={handleClose}>
@@ -88,7 +88,6 @@ function AddPet() {
                             </Button>
                         </DialogActions>
                     </Dialog>
-
                 </div>
                 <div className="padding">
                     <TextField type="text" value={pet.name} placeholder="Name" onChange={(e) => setPet({ ...pet, name: e.target.value })} />
