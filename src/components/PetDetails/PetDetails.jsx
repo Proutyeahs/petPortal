@@ -47,6 +47,15 @@ function PetDetails() {
         history.push(`/editpet/${id}`)
     }
 
+    const thisNote = (note_id) => {
+        console.log(note_id)
+        dispatch({
+            type: 'GET_THIS_NOTE',
+            payload: note_id
+        })
+        history.push(`/editfeeding/${id}`)
+    }
+
     return (
         <>
             <div className="container">
@@ -97,7 +106,7 @@ function PetDetails() {
                                     {note.notes}
                                 </TableCell>
                                 <TableCell>
-                                    <Button className='right' variant="outlined" color="secondary" onClick={() => history.push(`/editfeeding/${note.id}`)}>Edit</Button>
+                                    <Button className='right' variant="outlined" color="secondary" onClick={() => thisNote(note.id)}>Edit</Button>
                                 </TableCell>
                             </TableRow>
                         </TableBody>

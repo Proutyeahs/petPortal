@@ -25,7 +25,7 @@ function* editNote(action) {
     console.log(action.payload)
     try {
         yield axios.put(`/api/note/${action.payload.id}`, action.payload)
-        // yield put({ type: 'GET_NOTES'})
+        yield put({ type: 'GET_NOTES', payload: action.payload.petID})
     } catch (err) {
         console.log(err)
     }
