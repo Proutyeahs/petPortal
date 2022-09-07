@@ -25,8 +25,10 @@ import PetDetails from '../PetDetails/PetDetails';
 import EditPet from '../EditPet/EditPet';
 import AddFeeding from '../AddFeeding/AddFeeding';
 import EditFeeding from '../EditFeeding/EditFeeding';
+import PetFoods from '../PetFoods/PetFoods';
 
 import './App.css';
+import FoodsList from '../FoodsList/FoodsList';
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +55,20 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            exact
+            path="/petfoods"
+          >
+            <PetFoods />
+          </Route>
+
+          <Route
+            exact
+            path="/foodslist/:id"
+          >
+            <FoodsList />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

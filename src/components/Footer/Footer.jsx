@@ -28,8 +28,8 @@ function Footer() {
                   </Link>
                 </>
               )}
-              <Link className="about" to="/about">
-                About
+              <Link className="about" to="/petfoods">
+                Pet Food
               </Link>
             </div>
           </div>
