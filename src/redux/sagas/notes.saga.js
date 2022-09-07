@@ -42,11 +42,22 @@ function* getThisNote(action) {
     }
 }
 
+function* deleteNote(action) {
+    console.log(action.payload)
+    try{
+        yield axios.delete(`/api/note/${action.payload}`)
+        // yield put({type : 'GET_NOTES'})
+    } catch (err){
+        console.log(err)
+    }
+}
+
 function* notesSaga() {
   yield takeLatest('POST_NOTE', postNote)
   yield takeLatest('GET_NOTES', getNotes)
   yield takeLatest('EDIT_NOTE', editNote)
   yield takeLatest('GET_THIS_NOTE', getThisNote)
+  yield takeLatest('DELETE_NOTE', deleteNote)
 }
 
 export default notesSaga;

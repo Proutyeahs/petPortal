@@ -34,7 +34,7 @@ function EditFeeding() {
     // }
 
     const [newFood, setNewFood] = useState({ food: '' })
-    const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID : ''})
+    const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID: '' })
     const [open, setOpen] = React.useState(false);
 
     const thisNote = useSelector((store) => store.thisNote);
@@ -89,6 +89,21 @@ function EditFeeding() {
         }, 500)
     }
 
+    const handleDelete = () => {
+        let noteID = ''
+        for (let note of thisNote) {
+            console.log(note)
+            noteID = note.id
+        }
+        dispatch({
+            type: 'DELETE_NOTE',
+            payload: noteID
+        })
+        setTimeout(() => {
+            history.push(`/petdetails/${id}`)
+        }, 500)
+    }
+
     return (
         <>
             <div className="align">
@@ -129,6 +144,9 @@ function EditFeeding() {
                     </div>
                     <div onClick={editNotes} className="padding1">
                         <Button variant="outlined" color="primary" onClick={saveNotes}>Add Notes</Button>
+                    </div>
+                    <div className="padding">
+                        <Button variant="outlined" color="secondary" onClick={handleDelete}>Delete Entry</Button>
                     </div>
                 </div>
             </div>
