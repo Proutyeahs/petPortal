@@ -20,9 +20,20 @@ function* postNewFood(action) {
     }
 }
 
+function* getPetsFood(action) {
+    console.log(action.payload)
+    try {
+        const response = yield axios.get(`/api/food/${action.payload}`);
+        yield put({ type: 'SET_PETS_FOOD', payload: response.data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function* foodSaga() {
     yield takeLatest('GET_FOOD', getFood)
     yield takeLatest('POST_NEWFOOD', postNewFood)
+    yield takeLatest('GET_PETS_FOOD', getPetsFood)
 }
 
 export default foodSaga;

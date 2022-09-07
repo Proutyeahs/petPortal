@@ -34,4 +34,23 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+    const query =`
+        SELECT "foods".food_name, COUNT("food_name") FROM "foods"
+        JOIN "notes"
+        ON "notes".foods_id = "foods".id
+        JOIN "pets"
+        ON "pets".id = "notes".pets_id
+        WHERE "pets".species_id = $1
+        GROUP BY "foods".food_name;
+    ;`;
+    pool.query(query, [req.params.id]).then(result => {
+      console.log("food", result.rows)
+      res.send(result.rows)
+    }).catch (err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+  });
+
 module.exports = router;
