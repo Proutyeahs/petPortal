@@ -4,6 +4,10 @@ body,
   height: 100%;
 }
 
+* {
+  font-family: 'Concert One', cursive;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
