@@ -77,10 +77,10 @@ function PetDetails() {
                 <Table>
                     <TableHead className='black'>
                         <TableRow>
-                            <TableCell align="center">
+                            <TableCell className='white' align="center">
                                 Food
                             </TableCell>
-                            <TableCell align="center">
+                            <TableCell className='white' align="center">
                                 Date
                             </TableCell>
                         </TableRow>
