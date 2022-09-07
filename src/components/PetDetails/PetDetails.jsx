@@ -6,6 +6,17 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import './PetDetails.css'
+import Box from '@material-ui/core/Box';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 function PetDetails() {
 
@@ -50,20 +61,49 @@ function PetDetails() {
                             <p>{detail.birthday}</p>
                         </span>
                         <p>{detail.description}</p>
-                        <Button className='left' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
-                        <Button className='right' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                        <div className='padding'>
+                            <Button className='left' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
+                            <Button className='right' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                        </div>
                     </div>
                 ))}
             </div>
             <br></br>
-            {notes.map(note => (
-                <div>
-                    <p>{note.food_name}</p>
-                    <p>{note.date}</p>
-                    <p>{note.notes}</p>
-                </div>
-            ))}
-
+            <TableContainer>
+                <Table>
+                    <TableHead className='black'>
+                        <TableRow>
+                            <TableCell align="Center">
+                                Food
+                            </TableCell>
+                            <TableCell align="Center">
+                                Date
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    {notes.map(note => (
+                        <TableBody key={note.id}>
+                            <TableRow>
+                                <TableCell>
+                                    {note.food_name}
+                                </TableCell>
+                                <TableCell>
+                                    {note.date}
+                                </TableCell>
+                            </TableRow>
+                            <TableRow className='gray'>
+                                <TableCell className='notes'>
+                                    <p>Feeding Notes:</p>
+                                    {note.notes}
+                                </TableCell>
+                                <TableCell>
+                                    <Button className='right' variant="outlined" color="secondary">Edit</Button>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    ))}
+                </Table>
+            </TableContainer>
         </>
     )
 }

@@ -9,7 +9,6 @@ footer {
 }
 
 .back {
-  
   color: #f2f2f2;
   background-color: #750004;
   float: left;
@@ -17,9 +16,6 @@ footer {
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
   border: none;
   cursor: pointer;
   outline: 0;
@@ -35,16 +31,12 @@ footer {
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
   border: none;
   cursor: pointer;
   outline: 0;
 }
 
 .about {
-  
   color: #f2f2f2;
   background-color: #750004;
   float: right;
@@ -52,9 +44,6 @@ footer {
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
-
-  /* these last two make the logout button in
-  the nav bar look like another link */
   border: none;
   cursor: pointer;
   outline: 0;
@@ -62,13 +51,13 @@ footer {
 
 .footerNav {
 /* flex box layout */
-
 width: 100%;
-
-
 justify-content: space-between;
-
-
 background-color: #750004;
 overflow: hidden;
+}
+
+.display {
+  position: relative;
+  height: 60px;
 }

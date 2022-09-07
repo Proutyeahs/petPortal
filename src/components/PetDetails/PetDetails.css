@@ -24,3 +24,15 @@
 .right {
     float: right;
 }
+
+.black {
+    background-color: gray;
+}
+
+.notes {
+    width: 100%;
+}
+
+.gray {
+    background-color: whitesmoke;
+}

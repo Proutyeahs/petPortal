@@ -13,26 +13,28 @@ function Footer() {
   const history = useHistory()
   return (
     <>
-      <footer>
-        <div className="footerNav">
-          <div>
-            <div className="back" onClick={()=> history.goBack()}>
-              Back
+      <div className='display'>
+        <footer>
+          <div className="footerNav">
+            <div>
+              <div className="back" onClick={() => history.goBack()}>
+                Back
+              </div>
+              {/* If a user is logged in, show these links */}
+              {user.id && (
+                <>
+                  <Link className="home" to="/user">
+                    Home
+                  </Link>
+                </>
+              )}
+              <Link className="about" to="/about">
+                About
+              </Link>
             </div>
-            {/* If a user is logged in, show these links */}
-            {user.id && (
-              <>
-                <Link className="home" to="/user">
-                  Home
-                </Link>
-              </>
-            )}
-            <Link className="about" to="/about">
-              About
-            </Link>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </>
   );
 }
