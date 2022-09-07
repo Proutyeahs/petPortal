@@ -23,10 +23,41 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log(req.params.id)
     const query =`
-    SELECT "foods".food_name, * FROM "notes"
+    SELECT "foods".food_name, "notes".* FROM "notes"
     JOIN "foods"
     ON "foods".id = "notes".foods_id
-    WHERE "notes".pets_id = $1;
+    WHERE "notes".pets_id = $1
+    ORDER BY "notes".date DESC
+    ;`;
+    pool.query(query, [req.params.id]).then(result => {
+        res.send(result.rows)
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log("note", req.body)
+    const query =`
+        UPDATE "notes"
+        SET "foods_id" = $1, "date" = $2, "notes" = $3
+        WHERE "id" = $4
+    ;`;
+    pool.query(query, [req.body.food, req.body.date, req.body.note, req.body.id])
+    .then(result => {
+        res.sendStatus(200)
+    }).catch( err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
+router.get('/this/:id', rejectUnauthenticated, (req, res) => {
+    console.log("wow", req.params.id)
+    const query =`
+        SELECT * FROM "notes"
+        WHERE "notes".id = $1
     ;`;
     pool.query(query, [req.params.id]).then(result => {
         res.send(result.rows)

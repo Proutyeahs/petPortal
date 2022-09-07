@@ -37,7 +37,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p> */}
       {/* <LogOutButton className="btn" /> */}
-      <div>
+      <div className='padding2'>
         <Button variant="outlined" color="primary" onClick={() => history.push('/addpet')}>Add Pet</Button>
       </div>
       {pets.map(pet => (

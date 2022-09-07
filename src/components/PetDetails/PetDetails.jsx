@@ -73,10 +73,10 @@ function PetDetails() {
                 <Table>
                     <TableHead className='black'>
                         <TableRow>
-                            <TableCell align="Center">
+                            <TableCell align="center">
                                 Food
                             </TableCell>
-                            <TableCell align="Center">
+                            <TableCell align="center">
                                 Date
                             </TableCell>
                         </TableRow>
@@ -97,7 +97,7 @@ function PetDetails() {
                                     {note.notes}
                                 </TableCell>
                                 <TableCell>
-                                    <Button className='right' variant="outlined" color="secondary">Edit</Button>
+                                    <Button className='right' variant="outlined" color="secondary" onClick={() => history.push(`/editfeeding/${note.id}`)}>Edit</Button>
                                 </TableCell>
                             </TableRow>
                         </TableBody>

@@ -24,6 +24,7 @@ import AddPet from '../AddPet/AddPet';
 import PetDetails from '../PetDetails/PetDetails';
 import EditPet from '../EditPet/EditPet';
 import AddFeeding from '../AddFeeding/AddFeeding';
+import EditFeeding from '../EditFeeding/EditFeeding';
 
 import './App.css';
 
@@ -100,6 +101,13 @@ function App() {
             path="/addfeeding/:id"
           >
             <AddFeeding />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/editfeeding/:id"
+          >
+            <EditFeeding />
           </ProtectedRoute>
 
           <Route

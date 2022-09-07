@@ -12,9 +12,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import './AddFeeding.css'
 
-function AddFeeding() {
+function EditFeeding() {
 
     const history = useHistory()
     const dispatch = useDispatch();
@@ -29,15 +28,16 @@ function AddFeeding() {
     const reload = (id) => {
         console.log(id)
         dispatch({
-            type: 'GET_NOTES',
+            type: 'GET_THIS_NOTE',
             payload: id
         })
     }
 
     const [newFood, setNewFood] = useState({ food: '' })
-    const [notes, setNotes] = useState({pet_id: id, food: '', date: '', note: '' })
+    const [notes, setNotes] = useState({ id: id, food: '', date: '', note: '' })
     const [open, setOpen] = React.useState(false);
 
+    const thisNote = useSelector((store) => store.thisNote);
     const allFoods = useSelector((store) => store.foods);
 
     const handleClickOpen = () => {
@@ -57,13 +57,30 @@ function AddFeeding() {
         setNewFood({ food: '' })
     }
 
-    const addNotes = () => {
-        console.log(notes)
-        dispatch({
-            type: 'POST_NOTE',
-            payload: notes
-        })
-        setTimeout(() => { history.push(`/petdetails/${id}`) }, 500)
+    const saveNotes = () => {
+        for (let note of thisNote) {
+            console.log("ugh", note)
+            if (notes.food === '') {
+                notes.food = note.foods_id
+            }
+            if (notes.date === '') {
+                notes.date = note.date
+            }
+            if (notes.note === '') {
+                notes.note = note.notes
+            }
+        }
+    }
+
+    const editNotes = () => {
+        setTimeout(() => {
+            console.log(notes)
+            dispatch({
+                type: 'EDIT_NOTE',
+                payload: notes
+            })
+            history.push(`/`)
+        }, 500)
     }
 
     return (
@@ -73,7 +90,7 @@ function AddFeeding() {
                 <div className="padding1">
                     <FormControl variant="filled">
                         <InputLabel></InputLabel>
-                        <NativeSelect onChange={(e) => setNotes({...notes, food: e.target.value })}>
+                        <NativeSelect onChange={(e) => setNotes({ ...notes, food: e.target.value })}>
                             {allFoods.map(food => (
                                 <option key={food.id} value={food.id}>{food.food_name}</option>
                             ))}
@@ -104,8 +121,8 @@ function AddFeeding() {
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />
                     </div>
-                    <div className="padding1">
-                        <Button variant="outlined" color="primary" onClick={addNotes}>Add Notes</Button>
+                    <div onClick={editNotes} className="padding1">
+                        <Button variant="outlined" color="primary" onClick={saveNotes}>Add Notes</Button>
                     </div>
                 </div>
             </div>
@@ -113,4 +130,4 @@ function AddFeeding() {
     )
 }
 
-export default AddFeeding
+export default EditFeeding

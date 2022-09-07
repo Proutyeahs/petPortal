@@ -21,9 +21,32 @@ function* getNotes(action) {
     }
 }
 
+function* editNote(action) {
+    console.log(action.payload)
+    try {
+        yield axios.put(`/api/note/${action.payload.id}`, action.payload)
+        // yield put({ type: 'GET_NOTES'})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+function* getThisNote(action) {
+    console.log(action.payload)
+    try{
+        const thisNote = yield axios.get(`/api/note/this/${action.payload}`)
+        console.log(thisNote)
+        yield put({type: 'SET_THIS_NOTE', payload : thisNote.data})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 function* notesSaga() {
   yield takeLatest('POST_NOTE', postNote)
   yield takeLatest('GET_NOTES', getNotes)
+  yield takeLatest('EDIT_NOTE', editNote)
+  yield takeLatest('GET_THIS_NOTE', getThisNote)
 }
 
 export default notesSaga;

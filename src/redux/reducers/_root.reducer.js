@@ -6,6 +6,7 @@ import pet from './pet.reducer'
 import details from './details.reducer'
 import foods from './food.reducer'
 import notes from './notes.reducer'
+import thisNote from './thisNote.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   details,
   foods,
   notes,
+  thisNote,
 });
 
 export default rootReducer;

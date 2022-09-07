@@ -140,7 +140,7 @@ function EditPet() {
                     <TextField type="text" value={pet.birthday} placeholder="Birthday" onChange={(e) => setPet({ ...pet, birthday: e.target.value })} />
                 </div>
                 <div className="padding">
-                    <TextField type="text" value={pet.picture} placeholder="URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
+                    <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
                 </div>
                 <div className="padding" onClick={done}>
                     <Button variant="outlined" color="primary" onClick={editPet}>Save Pet</Button>
