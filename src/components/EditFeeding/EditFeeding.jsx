@@ -19,19 +19,19 @@ function EditFeeding() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // reload(id)
+        reload(id)
         dispatch({ type: 'GET_FOOD' })
     }, [])
 
     let { id } = useParams()
 
-    // const reload = (id) => {
-    //     console.log(id)
-    //     dispatch({
-    //         type: 'GET_THIS_NOTE',
-    //         payload: id
-    //     })
-    // }
+    const reload = (id) => {
+        console.log(id)
+        dispatch({
+            type: 'GET_THIS_NOTE',
+            payload: id
+        })
+    }
 
     const [newFood, setNewFood] = useState({ food: '' })
     const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID: '' })
@@ -85,7 +85,7 @@ function EditFeeding() {
                 type: 'EDIT_NOTE',
                 payload: notes
             })
-            history.push(`/petdetails/${id}`)
+            history.goBack()
         }, 500)
     }
 
@@ -100,7 +100,7 @@ function EditFeeding() {
             payload: noteID
         })
         setTimeout(() => {
-            history.push(`/petdetails/${id}`)
+            history.goBack()
         }, 500)
     }
 

@@ -48,7 +48,7 @@ function PetDetails() {
             type: 'GET_THIS_NOTE',
             payload: note_id
         })
-        history.push(`/editfeeding/${id}`)
+        history.push(`/editfeeding/${note_id}`)
     }
 
     return (
