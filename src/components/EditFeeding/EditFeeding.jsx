@@ -38,6 +38,7 @@ function EditFeeding() {
     const [newFood, setNewFood] = useState({ food: '' })
     const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID: '' })
     const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
 
     const thisNote = useSelector((store) => store.thisNote);
     const allFoods = useSelector((store) => store.foods);
@@ -47,6 +48,13 @@ function EditFeeding() {
     };
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    };
+    const handleClose1 = () => {
+        setOpen1(false);
     };
 
     const addFood = () => {
@@ -101,6 +109,7 @@ function EditFeeding() {
             type: 'DELETE_NOTE',
             payload: noteID
         })
+        handleClose1()
         setTimeout(() => {
             history.goBack()
         }, 500)
@@ -147,9 +156,20 @@ function EditFeeding() {
                     <div onClick={editNotes} className="padding1">
                         <Button variant="outlined" color="primary" onClick={saveNotes}>Add Notes</Button>
                     </div>
-                    <div className="padding">
-                        <Button variant="outlined" color="secondary" onClick={handleDelete}>Delete Entry</Button>
-                    </div>
+                    <div className="padding1">
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Entry</Button>
+                        </div>
+                    <Dialog open={open1} onClose={handleClose1}>
+                        <DialogTitle className='center'>Are you sure you want to Delete this Entry?</DialogTitle>
+                        <DialogActions>
+                            <Button variant="outlined" color="primary" onClick={handleClose1}>
+                                Cancel
+                            </Button>
+                            <div className="padding">
+                                <Button variant="outlined" color="secondary" onClick={handleDelete}>Delete Entry</Button>
+                            </div>
+                        </DialogActions>
+                    </Dialog>
                 </div>
             </div>
         </>

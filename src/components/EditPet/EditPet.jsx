@@ -38,6 +38,7 @@ function EditPet() {
     const allSpecies = useSelector((store) => store.species);
 
     const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '', id: id })
     const [newSpecies, setNewSpecies] = React.useState({ name: '' });
 
@@ -80,6 +81,13 @@ function EditPet() {
         setOpen(false);
     };
 
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    };
+    const handleClose1 = () => {
+        setOpen1(false);
+    };
+
     const addSpecies = () => {
         console.log(newSpecies)
         dispatch({
@@ -96,6 +104,7 @@ function EditPet() {
             type: 'DELETE_PET',
             payload: id
         })
+        handleClose1()
         setTimeout(() => {
             history.push('/')
         }, 500)
@@ -107,7 +116,7 @@ function EditPet() {
                 <h3>Edit A Pet</h3>
                 <div className="padding">
                     <FormControl variant="filled">
-                    <InputLabel>Species</InputLabel>
+                        <InputLabel>Species</InputLabel>
                         <Select className='min' value={pet.species} onChange={(e) => setPet({ ...pet, species: e.target.value })}>
                             {allSpecies.map(species => (
                                 <MenuItem key={species.id} value={species.id}>{species.species_name}</MenuItem>
@@ -148,9 +157,19 @@ function EditPet() {
                     <Button variant="outlined" color="primary" onClick={editPet}>Save Pet</Button>
                 </div>
                 <div className="padding">
-                <Button variant="outlined" color="secondary" onClick={() => handleDelete(id)}>Delete Pet</Button>
+                    <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Pet</Button>
                 </div>
-                
+                <Dialog open={open1} onClose={handleClose1}>
+                    <DialogTitle className='center'>Are you sure you want to Delete this Pet?</DialogTitle>
+                    <DialogActions>
+                        <Button variant="outlined" color="primary" onClick={handleClose1}>
+                            Cancel
+                        </Button>
+                        <div className="padding">
+                            <Button variant="outlined" color="secondary" onClick={() => handleDelete(id)}>Delete Pet</Button>
+                        </div>
+                    </DialogActions>
+                </Dialog>
             </div>
         </>
     )
