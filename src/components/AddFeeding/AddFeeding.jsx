@@ -37,7 +37,7 @@ function AddFeeding() {
     }
 
     const [newFood, setNewFood] = useState({ food: '' })
-    const [notes, setNotes] = useState({pet_id: id, food: '', date: '', note: '' })
+    const [notes, setNotes] = useState({ pet_id: id, food: '', date: '', note: '' })
     const [open, setOpen] = React.useState(false);
 
     const allFoods = useSelector((store) => store.foods);
@@ -61,11 +61,19 @@ function AddFeeding() {
 
     const addNotes = () => {
         console.log(notes)
-        dispatch({
-            type: 'POST_NOTE',
-            payload: notes
-        })
-        setTimeout(() => { history.push(`/petdetails/${id}`) }, 500)
+        setTimeout(() => {
+            dispatch({
+                type: 'POST_NOTE',
+                payload: notes
+            })
+            history.push(`/petdetails/${id}`)
+        }, 500)
+    }
+
+    const food = () => {
+        if (notes.food === '') {
+            notes.food = 1
+        }
     }
 
     return (
@@ -75,7 +83,7 @@ function AddFeeding() {
                 <div className="padding1">
                     <FormControl variant="filled">
                         <InputLabel>Food</InputLabel>
-                        <Select className='min' value={notes.food} onChange={(e) => setNotes({...notes, food: e.target.value })}>
+                        <Select className='min' value={notes.food} onChange={(e) => setNotes({ ...notes, food: e.target.value })}>
                             {allFoods.map(food => (
                                 <MenuItem key={food.id} value={food.id}>{food.food_name}</MenuItem>
                             ))}
@@ -83,7 +91,7 @@ function AddFeeding() {
                     </FormControl>
                     <div>
                         <div className="padding1">
-                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Food</Button>
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Food</Button>
                         </div>
                     </div>
                     <Dialog open={open} onClose={handleClose}>
@@ -106,8 +114,8 @@ function AddFeeding() {
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />
                     </div>
-                    <div className="padding1">
-                        <Button variant="outlined" color="primary" onClick={addNotes}>Add Notes</Button>
+                    <div onClick={addNotes} className="padding1">
+                        <Button variant="outlined" color="primary" onClick={food}>Add Notes</Button>
                     </div>
                 </div>
             </div>

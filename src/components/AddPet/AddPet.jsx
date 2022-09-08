@@ -49,12 +49,23 @@ function AddPet() {
 
     const addSpecies = () => {
         console.log(newSpecies)
-        dispatch({
-            type: 'POST_NEWSPECIES',
-            payload: newSpecies
-        })
-        handleClose()
-        setNewSpecies({ name: '' })
+        setTimeout(() => {
+            dispatch({
+                type: 'POST_NEWSPECIES',
+                payload: newSpecies
+            })
+            handleClose()
+            setNewSpecies({ name: '' })
+        }, 500)
+    }
+
+    const updateImage = () => {
+        if (pet.picture === '') {
+            pet.picture = 'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'
+        }
+        if (pet.species === '') {
+            pet.species = 1
+        }
     }
 
     return (
@@ -62,7 +73,7 @@ function AddPet() {
             <div className="align">
                 <h3>Add A New Pet</h3>
                 <div className="padding">
-                    <FormControl  variant="filled">
+                    <FormControl variant="filled">
                         <InputLabel>Species</InputLabel>
                         <Select className='min' value={pet.species} onChange={(e) => setPet({ ...pet, species: e.target.value })}>
                             {allSpecies.map(species => (
@@ -102,8 +113,8 @@ function AddPet() {
                 <div className="padding">
                     <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
                 </div>
-                <div className="padding">
-                    <Button variant="outlined" color="primary" onClick={addPet}>Add Pet</Button>
+                <div onClick={addPet} className="padding">
+                    <Button variant="outlined" color="primary" onClick={updateImage}>Add Pet</Button>
                 </div>
             </div>
         </>

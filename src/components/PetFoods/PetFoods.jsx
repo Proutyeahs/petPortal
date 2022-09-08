@@ -22,8 +22,8 @@ function PetFoods() {
             <div className="container">
                 {allSpecies.map(species => (
                     <Card onClick={() => history.push(`/foodslist/${species.id}`)} className="div1" key={species.id} value={species.id}>
-                        <h4>{species.species_name}</h4>
-                        {/* <CardMedia /> */}
+                        <div className='text'>{species.species_name}</div>
+                        <CardMedia className="img1" image={'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'} />
                     </Card>
                 ))}
             </div>

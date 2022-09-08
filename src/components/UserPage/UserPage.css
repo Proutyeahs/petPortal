@@ -12,6 +12,9 @@
 
 .text {
     text-align: center;
+    padding: 5px;
+    position: absolute;
+    color: rgb(242, 101, 101);
 }
 
 .padding2 {

@@ -121,7 +121,7 @@ function EditFeeding() {
                     </FormControl>
                     <div>
                         <div className="padding1">
-                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Food</Button>
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Food</Button>
                         </div>
                     </div>
                     <Dialog open={open} onClose={handleClose}>
