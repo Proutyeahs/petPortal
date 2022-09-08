@@ -12,6 +12,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import './AddFeeding.css'
 
 function AddFeeding() {
@@ -72,12 +74,12 @@ function AddFeeding() {
                 <h3>Add Feeding</h3>
                 <div className="padding1">
                     <FormControl variant="filled">
-                        <InputLabel></InputLabel>
-                        <NativeSelect onChange={(e) => setNotes({...notes, food: e.target.value })}>
+                        <InputLabel>Food</InputLabel>
+                        <Select className='min' value={notes.food} onChange={(e) => setNotes({...notes, food: e.target.value })}>
                             {allFoods.map(food => (
-                                <option key={food.id} value={food.id}>{food.food_name}</option>
+                                <MenuItem key={food.id} value={food.id}>{food.food_name}</MenuItem>
                             ))}
-                        </NativeSelect>
+                        </Select>
                     </FormControl>
                     <div>
                         <div className="padding1">

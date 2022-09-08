@@ -12,6 +12,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 import './AddPet.css'
 
@@ -25,7 +27,7 @@ function AddPet() {
 
     const allSpecies = useSelector((store) => store.species);
 
-    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: 1 })
+    const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
     const [open, setOpen] = React.useState(false);
     const [newSpecies, setNewSpecies] = React.useState({ name: '' });
 
@@ -60,17 +62,17 @@ function AddPet() {
             <div className="align">
                 <h3>Add A New Pet</h3>
                 <div className="padding">
-                    <FormControl variant="filled">
-                        <InputLabel></InputLabel>
-                        <NativeSelect onChange={(e) => setPet({ ...pet, species: e.target.value })}>
+                    <FormControl  variant="filled">
+                        <InputLabel>Species</InputLabel>
+                        <Select className='min' value={pet.species} onChange={(e) => setPet({ ...pet, species: e.target.value })}>
                             {allSpecies.map(species => (
-                                <option key={species.id} value={species.id}>{species.species_name}</option>
+                                <MenuItem key={species.id} value={species.id}>{species.species_name}</MenuItem>
                             ))}
-                        </NativeSelect>
+                        </Select>
                     </FormControl>
                     <div>
                         <div className="padding">
-                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add Species</Button>
+                            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Species/Breed</Button>
                         </div>
                     </div>
                     <Dialog open={open} onClose={handleClose}>

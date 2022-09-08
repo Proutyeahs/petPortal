@@ -5,3 +5,7 @@
 .padding {
     padding: 10px;
 }
+
+.min {
+    min-width: 120px;
+}
