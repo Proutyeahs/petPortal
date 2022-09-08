@@ -3,11 +3,11 @@
 }
 
 .background {
-    background-color: rgb(59, 57, 57);
+    background-color: rgb(96, 95, 95);
 }
 
 .white {
-    color: white;
+    color: white !important;
 }
 
 .center {

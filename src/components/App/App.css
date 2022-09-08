@@ -2,6 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
+  background-position: center;
+  background-image: url("https://res.cloudinary.com/dzyea2237/image/upload/v1662661967/prints_d3m1v8.png");
 }
 
 * {

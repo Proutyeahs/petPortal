@@ -60,11 +60,11 @@ function PetDetails() {
                             <CardMedia className="img1" image={detail.picture} />
                         </Card>
                         <span className='inline'>
-                            <h3>{detail.name}</h3>
-                            <h5>{detail.species_name}</h5>
-                            <p>{detail.birthday}</p>
+                            <h3 className='outline'>{detail.name}</h3>
+                            <h5 className='outline'>{detail.species_name}</h5>
+                            <p className='outline'>{detail.birthday}</p>
                         </span>
-                        <p>{detail.description}</p>
+                        <p className='outline'>{detail.description}</p>
                         <div className='padding'>
                             <Button className='left' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
                             <Button className='right' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
@@ -86,7 +86,7 @@ function PetDetails() {
                         </TableRow>
                     </TableHead>
                     {notes.map(note => (
-                        <TableBody key={note.id}>
+                        <TableBody className='outline' key={note.id}>
                             <TableRow>
                                 <TableCell>
                                     {note.food_name}

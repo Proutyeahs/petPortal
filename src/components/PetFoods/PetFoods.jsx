@@ -18,7 +18,9 @@ function PetFoods() {
 
     return (
         <>
-            <h1>Pet Types</h1>
+            <div className="center">
+                <h1 className='outline'>Pet Species and Breeds</h1>
+            </div>
             <div className="container">
                 {allSpecies.map(species => (
                     <Card onClick={() => history.push(`/foodslist/${species.id}`)} className="div1" key={species.id} value={species.id}>

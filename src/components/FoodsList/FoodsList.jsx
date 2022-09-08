@@ -31,7 +31,7 @@ function FoodsList() {
         for (let species of allSpecies) {
             console.log(species)
             if (species.id == id) {
-                return <h3>Top foods for {species.species_name}s</h3>
+                return <h3 className='outline'>Top foods for {species.species_name}s</h3>
             }
         }
     }
@@ -56,7 +56,7 @@ function FoodsList() {
                                 </TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
+                        <TableBody className='outline'>
                             {petsFood.map(food => (
                                 <TableRow key={food.food_name}>
                                     <TableCell className="width">
