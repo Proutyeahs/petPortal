@@ -39,6 +39,9 @@ function AddPet() {
     };
 
     const addPet = () => {
+        if (pet.name === '') {
+            return alert('Please Enter a Name for your pet')
+        }
         console.log(pet)
         dispatch({
             type: 'POST_PET',
