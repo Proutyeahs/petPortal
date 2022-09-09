@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   const query =`
     SELECT * FROM "species"
     ORDER BY "species".species_name ASC

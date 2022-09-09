@@ -34,7 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/:id', (req, res) => {
     const query =`
         SELECT "foods".food_name, COUNT("food_name") FROM "foods"
         JOIN "notes"
