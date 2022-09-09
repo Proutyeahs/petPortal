@@ -79,7 +79,7 @@ function AddFeeding() {
     return (
         <>
             <div className="align">
-                <h3>Add Feeding</h3>
+                <h3 className='outline'>Add Feeding</h3>
                 <div className="padding1">
                     <FormControl variant="filled">
                         <InputLabel>Food</InputLabel>

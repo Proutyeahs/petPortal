@@ -74,7 +74,7 @@ function AddPet() {
     return (
         <>
             <div className="align">
-                <h3>Add A New Pet</h3>
+                <h3 className='outline'>Add A New Pet</h3>
                 <div className="padding">
                     <FormControl variant="filled">
                         <InputLabel>Species</InputLabel>

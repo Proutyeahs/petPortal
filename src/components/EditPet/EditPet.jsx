@@ -113,7 +113,7 @@ function EditPet() {
     return (
         <>
             <div className="align">
-                <h3>Edit A Pet</h3>
+                <h3 className='outline'>Edit A Pet</h3>
                 <div className="padding">
                     <FormControl variant="filled">
                         <InputLabel>Species</InputLabel>

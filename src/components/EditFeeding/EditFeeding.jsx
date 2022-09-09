@@ -118,7 +118,7 @@ function EditFeeding() {
     return (
         <>
             <div className="align">
-                <h3>Add Feeding</h3>
+                <h3 className='outline'>Edit Feeding</h3>
                 <div className="padding1">
                     <FormControl variant="filled">
                         <InputLabel>Food</InputLabel>
