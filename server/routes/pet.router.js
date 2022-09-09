@@ -48,9 +48,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         SELECT "species".species_name, * FROM "species"
         JOIN "pets"
         ON "species".id = "pets".species_id
-        WHERE "pets".id = $1
+        WHERE ("pets".id = $1 AND "pets".user_id = $2)
     ;`;
-    pool.query(query, [req.params.id]).then(result => {
+    pool.query(query, [req.params.id, req.user.id]).then(result => {
         res.send(result.rows)
     }).catch(err => {
         console.log(err)

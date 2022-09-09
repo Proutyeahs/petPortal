@@ -23,13 +23,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log(req.params.id)
     const query =`
-    SELECT "foods".food_name, "notes".* FROM "notes"
-    JOIN "foods"
+    SELECT "foods".food_name, "notes".* FROM "foods"
+    JOIN "notes"
     ON "foods".id = "notes".foods_id
-    WHERE "notes".pets_id = $1
+    JOIN "pets"
+    ON "pets".id = "notes".pets_id
+    WHERE ("notes".pets_id = $1 AND "pets".user_id = $2)
     ORDER BY "notes".date DESC
     ;`;
-    pool.query(query, [req.params.id]).then(result => {
+    pool.query(query, [req.params.id, req.user.id]).then(result => {
         res.send(result.rows)
     }).catch(err => {
         console.log(err)

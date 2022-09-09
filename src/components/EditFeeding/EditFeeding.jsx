@@ -154,7 +154,7 @@ function EditFeeding() {
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />
                     </div>
                     <div onClick={editNotes} className="padding1">
-                        <Button variant="outlined" color="primary" onClick={saveNotes}>Add Notes</Button>
+                        <Button variant="outlined" color="primary" onClick={saveNotes}>Edit Notes</Button>
                     </div>
                     <div className="padding1">
                             <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Entry</Button>
