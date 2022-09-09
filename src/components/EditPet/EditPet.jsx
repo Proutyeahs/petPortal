@@ -125,7 +125,7 @@ function EditPet() {
                     </FormControl>
                 </div>
                 <div className="padding">
-                    <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Species/Breed</Button>
+                    <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add A New Species</Button>
                 </div>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Add New Species</DialogTitle>
@@ -154,7 +154,7 @@ function EditPet() {
                     <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
                 </div>
                 <div className="padding" onClick={done}>
-                    <Button variant="outlined" color="primary" onClick={editPet}>Save Pet</Button>
+                    <Button variant="outlined" color="primary" onClick={editPet}>Save Edits</Button>
                 </div>
                 <div className="padding">
                     <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Pet</Button>

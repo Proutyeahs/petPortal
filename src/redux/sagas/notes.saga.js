@@ -5,7 +5,7 @@ function* postNote(action) {
     console.log(action.payload)
   try {
     yield axios.post('/api/note', action.payload);
-    // yield put({ type: 'GET_NOTES', payload : action.payload.pet_id});
+    yield put({ type: 'GET_NOTES', payload : action.payload.pet_id});
   } catch (error) {
     console.log('notes post request failed', error);
   }

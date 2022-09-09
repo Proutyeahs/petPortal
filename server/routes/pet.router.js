@@ -61,14 +61,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query1=`
         DELETE FROM "notes"
-        WHERE "notes".pets_id = $1;
+        WHERE ("notes".pets_id = $1 AND "notes".user_id = $2)
         ;`;
     const query =`
         DELETE FROM "pets"
-        WHERE "id" = $1
+        WHERE ("id" = $1 AND "user_id" = $2)
     ;`;
-    pool.query(query1, [req.params.id])
-    pool.query(query, [req.params.id]).then(result => {
+    pool.query(query1, [req.params.id, req.user.id])
+    pool.query(query, [req.params.id, req.user.id]).then(result => {
         res.sendStatus(200)
     }).catch(err => {
         console.log(err)
@@ -81,9 +81,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         UPDATE "pets"
         SET "name" = $1, "picture" = $2, "description" = $3, "birthday" = $4, "species_id" = $5
-        WHERE "id" = $6
+        WHERE ("id" = $6 AND "user_id" = $7)
     ;`;
-    pool.query(query, [req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species, req.body.id])
+    pool.query(query, [req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species, req.body.id, req.user.id])
     .then(result => {
         res.sendStatus(200)
     }).catch( err => {
