@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import './LoginForm.css'
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -33,9 +36,9 @@ function LoginForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
+        <label className='padding' htmlFor="username">
+          Username :  
+          <TextField
             type="text"
             name="username"
             required
@@ -44,10 +47,11 @@ function LoginForm() {
           />
         </label>
       </div>
+      <br></br>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
+        <label className='padding' htmlFor="password">
+          Password :  
+          <TextField
             type="password"
             name="password"
             required
@@ -56,8 +60,8 @@ function LoginForm() {
           />
         </label>
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+      <div className='size'>
+        <Button variant="outlined" color="primary" className="btn1" type="submit" name="submit" value="Log In">Log In</Button>
       </div>
     </form>
   );
