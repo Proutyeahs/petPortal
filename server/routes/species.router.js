@@ -34,4 +34,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+router.get('/:specific', (req, res) => {
+  console.log(req.params)
+  const query =`
+    SELECT * FROM "species"
+    WHERE "species_name" = $1
+  ;`;
+  pool.query(query, [req.params.specific]).then(result => {
+    console.log(result.rows)
+    res.send(result.rows)
+  }).catch (err => {
+    console.log(err)
+    res.sendStatus(500)
+  })
+});
+
 module.exports = router;
