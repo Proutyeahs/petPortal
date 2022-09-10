@@ -20,18 +20,29 @@ function PetFoods() {
 
     const [specific, setSpecificSpecies] = useState('')
 
+    const login = () => {
+        console.log(thisSpecies)
+        if (thisSpecies == '') {
+            return <p className='outline'>Log in to add a Species</p>
+        }
+    }
+
+    const send = () => {
+        if(specific == '') {
+            return
+        }
+        dispatch({ type: 'GET_SPECIFIC_SPECIES', payload: specific })
+    }
 
     return (
         <>
             <div className="center">
                 <h1 className='outline'>Pet Species and Breeds</h1>
-
             </div>
             <div className="center">
                 <TextField type="text" placeholder="Look for a Species" onChange={(e) => setSpecificSpecies(e.target.value)} />
-                <Button variant="outlined" color="primary" onClick={() => dispatch({ type: 'GET_SPECIFIC_SPECIES', payload: specific })}>Search</Button>
+                <Button variant="outlined" color="primary" onClick={send}>Search</Button>
             </div>
-            
             <div className="center">
                 {thisSpecies.map(thisSpecies => (
                     <Card onClick={() => history.push(`/foodslist/${thisSpecies.id}`)} className="div1" key={thisSpecies.id} value={thisSpecies.id}>
@@ -39,7 +50,7 @@ function PetFoods() {
                         <CardMedia className="img1" image={'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'} />
                     </Card>
                 ))}
-            
+                {login()}
             </div>
             <div className="container">
                 {allSpecies.map(species => (
