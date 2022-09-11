@@ -42,6 +42,7 @@ function EditFeeding() {
 
     const thisNote = useSelector((store) => store.thisNote);
     const allFoods = useSelector((store) => store.foods);
+    const addedFood = useSelector((store) => store.addedFood)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -78,6 +79,12 @@ function EditFeeding() {
             }
             if (notes.food === '') {
                 notes.food = note.foods_id
+                for (let addedFood of addedFood) {
+                    console.log(addedFood.id)
+                    if (addedFood.id) {
+                        notes.food = addedFood.id
+                    }
+                }
             }
             if (notes.date === '') {
                 notes.date = note.date
@@ -94,6 +101,9 @@ function EditFeeding() {
             dispatch({
                 type: 'EDIT_NOTE',
                 payload: notes
+            })
+            dispatch({
+                type: 'UNSET_ADDEDFOOD'
             })
             history.goBack()
         }, 500)
@@ -128,6 +138,9 @@ function EditFeeding() {
                             ))}
                         </Select>
                     </FormControl>
+                    <div>
+                        or
+                    </div>
                     <div>
                         <div className="padding1">
                             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Food</Button>

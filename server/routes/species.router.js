@@ -45,7 +45,7 @@ router.get('/:specific', (req, res) => {
   console.log(req.params)
   const query =`
     SELECT * FROM "species"
-    WHERE "species_name" = $1
+    WHERE ("species_name" = $1 AND "authorized" = true)
   ;`;
   pool.query(query, [req.params.specific]).then(result => {
     console.log(result.rows)

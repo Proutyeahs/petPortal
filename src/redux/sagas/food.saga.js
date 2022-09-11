@@ -13,7 +13,8 @@ function* getFood() {
 function* postNewFood(action) {
     console.log(action.payload)
     try {
-        yield axios.post('/api/food', action.payload)
+        const response = yield axios.post('/api/food', action.payload)
+        yield put({type : 'SET_ADDEDFOOD', payload: response.data})
         yield put({ type: 'GET_FOOD' })
     } catch (err) {
         console.log(err)

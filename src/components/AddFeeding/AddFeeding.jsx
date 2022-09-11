@@ -41,6 +41,7 @@ function AddFeeding() {
     const [open, setOpen] = React.useState(false);
 
     const allFoods = useSelector((store) => store.foods);
+    const addedFood = useSelector((store) => store.addedFood)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -66,6 +67,10 @@ function AddFeeding() {
                 type: 'POST_NOTE',
                 payload: notes
             })
+            dispatch({
+                type: 'UNSET_ADDEDFOOD'
+            })
+            setNotes({...notes, food : ''})
             history.push(`/petdetails/${id}`)
         }, 500)
     }
@@ -73,6 +78,12 @@ function AddFeeding() {
     const food = () => {
         if (notes.food === '') {
             notes.food = 1
+            for (let addedFood of addedFood) {
+                console.log(addedFood.id)
+                if (addedFood.id) {
+                    notes.food = addedFood.id
+                }
+            }
         }
     }
 
@@ -89,6 +100,9 @@ function AddFeeding() {
                             ))}
                         </Select>
                     </FormControl>
+                    <div>
+                        or
+                    </div>
                     <div>
                         <div className="padding1">
                             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Food</Button>

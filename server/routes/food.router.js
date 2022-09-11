@@ -27,8 +27,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     INSERT INTO "foods" ("food_name")
     VALUES ($1)
     ;`;
+    const query2 =`
+      SELECT * FROM "foods"
+      WHERE "food_name" = $1
+    ;`;
     pool.query(query, [req.body.food]).then(result => {
-        res.sendStatus(200)
+      pool.query(query2, [req.body.food]).then( results => {
+        res.send(results.rows)
+      })
     }).catch (err => {
         console.log(err)
         res.sendStatus(500)
