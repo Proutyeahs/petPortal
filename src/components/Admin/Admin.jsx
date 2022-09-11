@@ -45,19 +45,19 @@ function Admin() {
         })
     }
 
-const approveFood = (food) => {
-    dispatch({
-        type: 'AUTHORIZE_FOOD',
-        payload: food
-    })
-}
+    const approveFood = (food) => {
+        dispatch({
+            type: 'AUTHORIZE_FOOD',
+            payload: food
+        })
+    }
 
-const approveSpecies = (species) => {
-    dispatch({
-        type: 'AUTHORIZE_SPECIES',
-        payload: species
-    })
-}
+    const approveSpecies = (species) => {
+        dispatch({
+            type: 'AUTHORIZE_SPECIES',
+            payload: species
+        })
+    }
 
     return (
         <>
@@ -86,8 +86,10 @@ const approveSpecies = (species) => {
                                             backgroundColor: !species.authorized ? 'hotpink' : ''
                                         }}
                                         onClick={() => approveSpecies(species)}
-                                    >Approval</Button>
-                                    <Button variant="outlined" color="secondary" onClick={() => deleteSpecies(species.id)} >Delete</Button>
+                                    >Flag</Button>
+                                    {!species.authorized &&
+                                        <Button variant="outlined" color="secondary" onClick={() => deleteSpecies(species.id)} >Delete</Button>
+                                    }
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -118,8 +120,10 @@ const approveSpecies = (species) => {
                                             backgroundColor: !food.authorized ? 'hotpink' : ''
                                         }}
                                         onClick={() => approveFood(food)}
-                                    >Approval</Button>
-                                    <Button variant="outlined" color="secondary" onClick={() => deleteFood(food.id)}>Delete</Button>
+                                    >Flag</Button>
+                                    {!food.authorized &&
+                                        <Button variant="outlined" color="secondary" onClick={() => deleteFood(food.id)}>Delete</Button>
+                                    }
                                 </TableCell>
                             </TableRow>
                         ))}
