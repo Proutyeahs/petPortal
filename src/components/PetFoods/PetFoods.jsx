@@ -17,12 +17,16 @@ function PetFoods() {
     const history = useHistory()
     const allSpecies = useSelector((store) => store.species);
     const thisSpecies = useSelector((store) => store.specificSpecies)
+    const user = useSelector((store) => store.user)
 
     const [specific, setSpecificSpecies] = useState('')
 
     const login = () => {
-        console.log(thisSpecies)
-        if (thisSpecies == '') {
+        // if (specific) {
+        //     console.log(specific)
+        //     return setSpecific(specific[0].toUpperCase() + specific.substring(1))
+        // }
+        if (thisSpecies == '' && !user.id) {
             return <p className='outline'>Log in to add a Species</p>
         }
     }

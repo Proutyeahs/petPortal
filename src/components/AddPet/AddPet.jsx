@@ -26,6 +26,7 @@ function AddPet() {
     const history = useHistory()
 
     const allSpecies = useSelector((store) => store.species);
+    const species = useSelector((store) => store.newSpecies)
 
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
     const [open, setOpen] = React.useState(false);
@@ -46,6 +47,9 @@ function AddPet() {
         dispatch({
             type: 'POST_PET',
             payload: pet
+        })
+        dispatch({
+            type: 'UNSET_NEWSPECIES'
         })
         setTimeout(() => { history.push('/') }, 500)
     }
@@ -68,6 +72,12 @@ function AddPet() {
         }
         if (pet.species === '') {
             pet.species = 1
+            for(let species of species) {
+                console.log(species.id)
+                if(species.id) {
+                    pet.species = species.id
+                }
+            }
         }
     }
 

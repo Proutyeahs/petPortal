@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const query =`
     SELECT * FROM "species"
+    WHERE "authorized" = true
     ORDER BY "species".species_name ASC
   ;`;
   pool.query(query).then(result => {
@@ -26,8 +27,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     INSERT INTO "species" ("species_name")
     VALUES ($1)
     ;`;
+    const query2 =`
+      SELECT * FROM "species"
+      WHERE "species_name" = $1
+    ;`;
     pool.query(query, [req.body.name]).then(result => {
-        res.sendStatus(200)
+      pool.query(query2, [req.body.name]).then( results => {
+        res.send(results.rows)
+      })
     }).catch (err => {
         console.log(err)
         res.sendStatus(500)

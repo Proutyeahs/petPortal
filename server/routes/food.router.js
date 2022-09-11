@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   const query =`
     SELECT * FROM "foods"
+    WHERE "authorized" = true
     ORDER BY "foods".food_name ASC
   ;`;
   pool.query(query).then(result => {

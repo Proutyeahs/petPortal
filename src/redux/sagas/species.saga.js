@@ -13,7 +13,9 @@ function* getSpecies() {
 function* postNewSpecies(action) {
     console.log(action.payload)
     try {
-        yield axios.post('/api/species', action.payload)
+        const response = yield axios.post('/api/species', action.payload)
+        console.log('yolo', response.data)
+        yield put({type : 'SET_NEWSPECIES', payload: response.data})
         yield put({ type: 'GET_SPECIES'})
     } catch (err) {
         console.log(err)
