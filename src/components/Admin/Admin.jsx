@@ -29,6 +29,22 @@ function Admin() {
         })
     }
 
+    const deleteFood = (id) => {
+        console.log(id)
+        dispatch({
+            type: 'DELETE_FOOD',
+            payload: id
+        })
+    }
+
+    const deleteSpecies = (id) => {
+        console.log(id)
+        dispatch({
+            type: 'DELETE_SPECIES',
+            payload: id
+        })
+    }
+
     return (
         <>
             <h1 className='outline'>Admin page</h1>
@@ -52,7 +68,7 @@ function Admin() {
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="outlined" color="primary">Approve</Button>
-                                    <Button variant="outlined" color="secondary">Delete</Button>
+                                    <Button variant="outlined" color="secondary" onClick={() => deleteSpecies(species.id)} >Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -79,7 +95,7 @@ function Admin() {
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="outlined" color="primary">Approve</Button>
-                                    <Button variant="outlined" color="secondary">Delete</Button>
+                                    <Button variant="outlined" color="secondary" onClick={() => deleteFood(food.id)}>Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

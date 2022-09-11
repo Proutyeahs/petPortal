@@ -41,11 +41,22 @@ function* getAllSpecies() {
   }
 }
 
+function* deleteSpecies(action) {
+  console.log(action.payload)
+  try{
+      yield axios.delete(`/api/allspecies/${action.payload}`)
+      yield put({type : 'GET_ALL_SPECIES'})
+  } catch (err){
+      console.log(err)
+  }
+}
+
 function* speciesSaga() {
   yield takeLatest('GET_SPECIES', getSpecies);
   yield takeLatest('POST_NEWSPECIES', postNewSpecies);
   yield takeLatest('GET_SPECIFIC_SPECIES', getSpecificSpecies)
   yield takeLatest('GET_ALL_SPECIES', getAllSpecies)
+  yield takeLatest('DELETE_SPECIES', deleteSpecies)
 }
 
 export default speciesSaga;

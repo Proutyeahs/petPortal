@@ -40,11 +40,22 @@ function* getAllFood() {
     }
   }
 
+function* deleteFood(action) {
+    console.log(action.payload)
+    try{
+        yield axios.delete(`/api/allfood/${action.payload}`)
+        yield put({type : 'GET_ALL_FOOD'})
+    } catch (err){
+        console.log(err)
+    }
+}
+
 function* foodSaga() {
     yield takeLatest('GET_FOOD', getFood)
     yield takeLatest('POST_NEWFOOD', postNewFood)
     yield takeLatest('GET_PETS_FOOD', getPetsFood)
     yield takeLatest('GET_ALL_FOOD', getAllFood)
+    yield takeLatest('DELETE_FOOD', deleteFood)
 }
 
 export default foodSaga;
