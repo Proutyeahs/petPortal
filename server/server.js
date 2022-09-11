@@ -13,6 +13,8 @@ const speciesRouter = require('./routes/species.router')
 const petRouter = require('./routes/pet.router')
 const foodRouter = require('./routes/food.router')
 const noteRouter = require('./routes/note.router')
+const allfoodRouter = require('./routes/allfood.router')
+const allspeciesRouter = require('./routes/allspecies.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +33,8 @@ app.use('/api/species', speciesRouter)
 app.use('/api/pet', petRouter)
 app.use('/api/food', foodRouter)
 app.use('/api/note', noteRouter)
+app.use('/api/allfood', allfoodRouter)
+app.use('/api/allspecies', allspeciesRouter)
 
 // Serve static files
 app.use(express.static('build'));

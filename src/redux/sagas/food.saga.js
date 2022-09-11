@@ -31,10 +31,20 @@ function* getPetsFood(action) {
     }
 }
 
+function* getAllFood() {
+    try {
+      const response = yield axios.get('/api/allfood');
+      yield put({ type: 'SET_ALL_FOOD', payload: response.data });
+    } catch (error) {
+      console.log('Food get all request failed', error);
+    }
+  }
+
 function* foodSaga() {
     yield takeLatest('GET_FOOD', getFood)
     yield takeLatest('POST_NEWFOOD', postNewFood)
     yield takeLatest('GET_PETS_FOOD', getPetsFood)
+    yield takeLatest('GET_ALL_FOOD', getAllFood)
 }
 
 export default foodSaga;
