@@ -33,4 +33,20 @@ router.get('/', (req, res) => {
     })
 })
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+    console.log('this', req.body)
+    const query =`
+        UPDATE "species"
+        SET "authorized" = $1
+        WHERE "id" = $2
+    ;`;
+    pool.query(query, [!req.body.authorized, req.body.id])
+    .then(result => {
+        res.sendStatus(200)
+    }).catch( err => {
+        console.log(err)
+        res.sendStatus(500)
+    })
+})
+
   module.exports = router;

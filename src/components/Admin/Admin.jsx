@@ -45,9 +45,23 @@ function Admin() {
         })
     }
 
+const approveFood = (food) => {
+    dispatch({
+        type: 'AUTHORIZE_FOOD',
+        payload: food
+    })
+}
+
+const approveSpecies = (species) => {
+    dispatch({
+        type: 'AUTHORIZE_SPECIES',
+        payload: species
+    })
+}
+
     return (
         <>
-            <h1 className='outline'>Admin page</h1>
+            <h1 className='outline1'>Admin page</h1>
             <TableContainer >
                 <Table>
                     <TableHead className='background'>
@@ -55,8 +69,8 @@ function Admin() {
                             <TableCell className='white'>
                                 Species
                             </TableCell>
-                            <TableCell className='white'>
-                                Approved
+                            <TableCell className='white1'>
+                                Approval
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -67,7 +81,12 @@ function Admin() {
                                     {species.species_name}
                                 </TableCell>
                                 <TableCell>
-                                    <Button variant="outlined" color="primary">Approve</Button>
+                                    <Button variant="outlined" color="primary"
+                                        style={{
+                                            backgroundColor: !species.authorized ? 'hotpink' : ''
+                                        }}
+                                        onClick={() => approveSpecies(species)}
+                                    >Approval</Button>
                                     <Button variant="outlined" color="secondary" onClick={() => deleteSpecies(species.id)} >Delete</Button>
                                 </TableCell>
                             </TableRow>
@@ -82,8 +101,8 @@ function Admin() {
                             <TableCell className='white'>
                                 Foods
                             </TableCell>
-                            <TableCell className='white'>
-                                Approved
+                            <TableCell className='white1'>
+                                Approval
                             </TableCell>
                         </TableRow>
                     </TableHead>
@@ -94,7 +113,12 @@ function Admin() {
                                     {food.food_name}
                                 </TableCell>
                                 <TableCell>
-                                    <Button variant="outlined" color="primary">Approve</Button>
+                                    <Button variant="outlined" color="primary"
+                                        style={{
+                                            backgroundColor: !food.authorized ? 'hotpink' : ''
+                                        }}
+                                        onClick={() => approveFood(food)}
+                                    >Approval</Button>
                                     <Button variant="outlined" color="secondary" onClick={() => deleteFood(food.id)}>Delete</Button>
                                 </TableCell>
                             </TableRow>

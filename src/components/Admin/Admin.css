@@ -1,7 +1,10 @@
-/* .left {
-    width: 50%;
+.white1 {
+    width: 56%;
+    color: white !important;
 }
 
-.right {
-    width: 50%;
-} */
+.outline1 {
+    text-align: center;
+    color: black;
+    text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+}
