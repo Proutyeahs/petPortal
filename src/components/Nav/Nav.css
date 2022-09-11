@@ -46,3 +46,8 @@ header {
 .navLink:hover {
   background-color: #701e20;
 }
+
+.display {
+  position: relative;
+  height: 60px;
+}

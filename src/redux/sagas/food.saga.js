@@ -31,10 +31,42 @@ function* getPetsFood(action) {
     }
 }
 
+function* getAllFood() {
+    try {
+      const response = yield axios.get('/api/allfood');
+      yield put({ type: 'SET_ALL_FOOD', payload: response.data });
+    } catch (error) {
+      console.log('Food get all request failed', error);
+    }
+  }
+
+function* deleteFood(action) {
+    console.log(action.payload)
+    try{
+        yield axios.delete(`/api/allfood/${action.payload}`)
+        yield put({type : 'GET_ALL_FOOD'})
+    } catch (err){
+        console.log(err)
+    }
+}
+
+function* authorize(action) {
+    console.log(action.payload)
+    try {
+        yield axios.put(`/api/allfood/${action.payload.id}`, action.payload)
+        yield put({ type: 'GET_ALL_FOOD'})
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 function* foodSaga() {
     yield takeLatest('GET_FOOD', getFood)
     yield takeLatest('POST_NEWFOOD', postNewFood)
     yield takeLatest('GET_PETS_FOOD', getPetsFood)
+    yield takeLatest('GET_ALL_FOOD', getAllFood)
+    yield takeLatest('DELETE_FOOD', deleteFood)
+    yield takeLatest('AUTHORIZE_FOOD', authorize)
 }
 
 export default foodSaga;
