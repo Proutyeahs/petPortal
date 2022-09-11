@@ -36,6 +36,7 @@ function EditPet() {
 
     const details = useSelector((store) => store.details)
     const allSpecies = useSelector((store) => store.species);
+    const species = useSelector((store) => store.newSpecies)
 
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
@@ -59,6 +60,12 @@ function EditPet() {
             }
             if (pet.species === '') {
                 pet.species = detail.species_id
+                for (let species of species) {
+                    console.log(species.id)
+                    if (species.id) {
+                        pet.species = species.id
+                    }
+                }
             }
         }
     }
@@ -69,6 +76,9 @@ function EditPet() {
             dispatch({
                 type: 'EDIT_PET',
                 payload: pet
+            })
+            dispatch({
+                type: 'UNSET_NEWSPECIES'
             })
             history.push(`/petdetails/${id}`)
         }, 500)
@@ -96,6 +106,7 @@ function EditPet() {
         })
         handleClose()
         setNewSpecies({ name: '' })
+        setPet({ ...pet, species: '' })
     }
 
     const handleDelete = (id) => {
@@ -123,6 +134,9 @@ function EditPet() {
                             ))}
                         </Select>
                     </FormControl>
+                </div>
+                <div>
+                    or
                 </div>
                 <div className="padding">
                     <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add A New Species</Button>

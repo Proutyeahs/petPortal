@@ -63,6 +63,7 @@ function AddPet() {
             })
             handleClose()
             setNewSpecies({ name: '' })
+            setPet({...pet, species : ''})
         }, 500)
     }
 
@@ -72,9 +73,9 @@ function AddPet() {
         }
         if (pet.species === '') {
             pet.species = 1
-            for(let species of species) {
+            for (let species of species) {
                 console.log(species.id)
-                if(species.id) {
+                if (species.id) {
                     pet.species = species.id
                 }
             }
@@ -94,6 +95,9 @@ function AddPet() {
                             ))}
                         </Select>
                     </FormControl>
+                    <div>
+                        or
+                    </div>
                     <div>
                         <div className="padding">
                             <Button variant="outlined" color="secondary" onClick={handleClickOpen}>Add New Species/Breed</Button>
