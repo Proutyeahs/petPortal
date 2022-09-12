@@ -13,6 +13,7 @@ header {
   
   background-color: #750004;
   overflow: hidden;
+  z-index: 3;
 }
 
 .nav a {
