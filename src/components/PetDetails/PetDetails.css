@@ -31,7 +31,7 @@
 }
 
 .black {
-    background-color:rgb(96, 95, 95);
+    background-color:rgb(96, 95, 95, .9);
 }
 
 .notes {
@@ -41,4 +41,8 @@
 
 .white {
     color: white !important;
+}
+
+.row {
+    background-color: rgb(242, 239, 239, .5);
 }

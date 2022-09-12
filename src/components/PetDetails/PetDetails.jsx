@@ -87,7 +87,7 @@ function PetDetails() {
                     </TableHead>
                     {notes.map(note => (
                         <TableBody className='outline' key={note.id}>
-                            <TableRow>
+                            <TableRow className='row'>
                                 <TableCell>
                                     {note.food_name}
                                 </TableCell>

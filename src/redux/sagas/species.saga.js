@@ -34,7 +34,7 @@ function* getSpecificSpecies(action) {
 
 function* getAllSpecies() {
   try {
-    const response = yield axios.get('/api/allspecies/');
+    const response = yield axios.get('/api/allspecies');
     yield put({ type: 'SET_ALL_SPECIES', payload: response.data });
   } catch (error) {
     console.log('Species get request failed', error);
