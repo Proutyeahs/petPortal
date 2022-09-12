@@ -127,16 +127,16 @@ function App() {
               <EditFeeding />
             </ProtectedRoute>
 
-            {user.admin ?
-              <ProtectedRoute
+            <ProtectedRoute
                 exact
                 path="/admin"
               >
+                {user.admin ?
                 <Admin />
+                :
+                <UserPage />
+              }
               </ProtectedRoute>
-              :
-              <UserPage />
-            }
 
             <Route
               exact
