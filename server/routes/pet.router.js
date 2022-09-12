@@ -7,6 +7,9 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.post('/', rejectUnauthenticated, (req, res) => {
+    if (req.body.picture === '') {
+        req.body.picture = 'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'
+    }
     console.log(req.body)
     const query =`
     INSERT INTO "pets" (

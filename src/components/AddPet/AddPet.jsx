@@ -68,9 +68,6 @@ function AddPet() {
     }
 
     const updateImage = () => {
-        if (pet.picture === '') {
-            pet.picture = 'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'
-        }
         if (pet.species === '') {
             pet.species = 1
             for (let species of species) {
