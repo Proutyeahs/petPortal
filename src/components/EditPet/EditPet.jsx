@@ -79,7 +79,7 @@ function EditPet() {
             dispatch({
                 type: 'UNSET_NEWSPECIES'
             })
-            history.push(`/petdetails/${id}`)
+            history.goBack()
         }, 500)
     }
 
@@ -154,14 +154,15 @@ function EditPet() {
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <p className='outline'>Birthday:</p>
+                <div className="padding">
+                    <TextField type="date" value={pet.birthday} placeholder="Birthday" onChange={(e) => setPet({ ...pet, birthday: e.target.value })} />
+                </div>
                 <div className="padding">
                     <TextField type="text" value={pet.name} placeholder="Name" onChange={(e) => setPet({ ...pet, name: e.target.value })} />
                 </div>
                 <div className="padding">
                     <TextField type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
-                </div>
-                <div className="padding">
-                    <TextField type="text" value={pet.birthday} placeholder="Birthday" onChange={(e) => setPet({ ...pet, birthday: e.target.value })} />
                 </div>
                 <div className="padding">
                     <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />

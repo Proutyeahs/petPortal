@@ -159,8 +159,9 @@ function EditFeeding() {
                             </Button>
                         </DialogActions>
                     </Dialog>
+                    <p className='outline'>Date:</p>
                     <div className="padding1">
-                        <TextField type="text" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
+                        <TextField type="date" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
                     </div>
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />

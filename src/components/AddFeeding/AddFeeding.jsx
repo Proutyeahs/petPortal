@@ -69,8 +69,8 @@ function AddFeeding() {
             dispatch({
                 type: 'UNSET_ADDEDFOOD'
             })
-            setNotes({...notes, food : ''})
-            history.push(`/petdetails/${id}`)
+            setNotes({ ...notes, food: '' })
+            history.goBack()
         }, 500)
     }
 
@@ -122,7 +122,8 @@ function AddFeeding() {
                         </DialogActions>
                     </Dialog>
                     <div className="padding1">
-                        <TextField type="text" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
+                        <p className='outline'>Date:</p>
+                        <TextField type="date" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
                     </div>
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />
