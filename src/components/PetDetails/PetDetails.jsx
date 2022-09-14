@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -12,6 +12,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import petReducer from '../../redux/reducers/pet.reducer';
+import petsFoodReducer from '../../redux/reducers/petsFood.reducer';
 
 function PetDetails() {
 
@@ -36,6 +43,9 @@ function PetDetails() {
     const dispatch = useDispatch()
     const details = useSelector((store) => store.details)
     const notes = useSelector((store) => store.notes)
+    const user = useSelector((store) => store.user);
+    const [open, setOpen] = useState(false);
+    const [newUser, setNewUser] = useState('')
 
     const handleEdit = (id) => {
         console.log(id)
@@ -49,6 +59,20 @@ function PetDetails() {
             payload: note_id
         })
         history.push(`/editfeeding/${note_id}`)
+    }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const searchUser = () => {
+        dispatch({
+            type: 'ADD_USER',
+            payload: newUser
+        })
     }
 
     return (
@@ -65,10 +89,29 @@ function PetDetails() {
                             <p className='outline'>{detail.birthday}</p>
                         </span>
                         <p className='outline'>{detail.description}</p>
+
                         <div className='padding'>
-                            <Button className='left' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
-                            <Button className='right' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                            <Button className='left' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                            <span>
+                                <Button className='center1' variant="outlined" onClick={handleClickOpen}>Add User</Button>
+                                <Dialog open={open} onClose={handleClose}>
+                                    <DialogTitle className='center'>Allow another user to view this pet</DialogTitle>
+                                    <DialogContent>
+                                        <TextField type="text" value={newUser} placeholder="UserName" onChange={(e) => setNewUser(e.target.value)} />
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button variant="outlined" color="primary" onClick={handleClose}>
+                                            Cancel
+                                        </Button>
+                                        <div className="padding">
+                                            <Button variant="outlined" color="secondary" onClick={searchUser}>Confirm</Button>
+                                        </div>
+                                    </DialogActions>
+                                </Dialog>
+                            </span>
+                            <Button className='right' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
                         </div>
+
                     </div>
                 ))}
             </div>

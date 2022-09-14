@@ -34,7 +34,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
   const query =`
     SELECT * FROM "pets"
-    WHERE "user_id" = $1
+    WHERE ("user_id" = $1 OR "pets".authorized_user = $1)
   ;`;
   pool.query(query, [req.user.id]).then(result => {
     console.log("pets", result.rows)
@@ -51,7 +51,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         SELECT "species".species_name, * FROM "species"
         JOIN "pets"
         ON "species".id = "pets".species_id
-        WHERE ("pets".id = $1 AND "pets".user_id = $2)
+        WHERE ("pets".id = $1 AND ("pets".user_id = $2 OR "pets".authorized_user = $2))
     ;`;
     pool.query(query, [req.params.id, req.user.id]).then(result => {
         res.send(result.rows)
