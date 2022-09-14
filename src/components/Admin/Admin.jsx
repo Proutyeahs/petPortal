@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from 'react-router-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
