@@ -6,6 +6,7 @@ import speciesSaga from './species.saga';
 import petSaga from './pet.saga';
 import foodSaga from './food.saga';
 import notesSaga from './notes.saga';
+import addUserSaga from './addUser.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     petSaga(),
     foodSaga(),
     notesSaga(),
+    addUserSaga(),
   ]);
 }

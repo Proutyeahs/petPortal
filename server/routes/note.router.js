@@ -28,7 +28,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     ON "foods".id = "notes".foods_id
     JOIN "pets"
     ON "pets".id = "notes".pets_id
-    WHERE ("notes".pets_id = $1 AND "pets".user_id = $2)
+    WHERE ("notes".pets_id = $1 AND ("pets".user_id = $2 OR "pets".authorized_user = $2))
     ORDER BY "notes".date DESC
     ;`;
     pool.query(query, [req.params.id, req.user.id]).then(result => {
