@@ -48,6 +48,6 @@
     background-color: rgb(242, 239, 239, .5);
 }
 
-.center1 {
-    padding-left: 5px;
+.space {
+    margin: 1px !important;
 }

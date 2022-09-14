@@ -45,7 +45,7 @@ function PetDetails() {
     const notes = useSelector((store) => store.notes)
     const user = useSelector((store) => store.user);
     const [open, setOpen] = useState(false);
-    const [newUser, setNewUser] = useState('')
+    const [newUser, setNewUser] = useState({ user: '', id: id })
 
     const handleEdit = (id) => {
         console.log(id)
@@ -73,6 +73,7 @@ function PetDetails() {
             type: 'ADD_USER',
             payload: newUser
         })
+        handleClose()
     }
 
     return (
@@ -91,27 +92,24 @@ function PetDetails() {
                         <p className='outline'>{detail.description}</p>
 
                         <div className='padding'>
-                            <Button className='left' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
-                            <span>
-                                <Button className='center1' variant="outlined" onClick={handleClickOpen}>Add User</Button>
-                                <Dialog open={open} onClose={handleClose}>
-                                    <DialogTitle className='center'>Allow another user to view this pet</DialogTitle>
-                                    <DialogContent>
-                                        <TextField type="text" value={newUser} placeholder="UserName" onChange={(e) => setNewUser(e.target.value)} />
-                                    </DialogContent>
-                                    <DialogActions>
-                                        <Button variant="outlined" color="primary" onClick={handleClose}>
-                                            Cancel
-                                        </Button>
-                                        <div className="padding">
-                                            <Button variant="outlined" color="secondary" onClick={searchUser}>Confirm</Button>
-                                        </div>
-                                    </DialogActions>
-                                </Dialog>
-                            </span>
-                            <Button className='right' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
+                            <Button className='space' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                            <Button className='space' variant="outlined" onClick={handleClickOpen}>Add User</Button>
+                            <Dialog open={open} onClose={handleClose}>
+                                <DialogTitle className='center'>Allow another user to view this pet</DialogTitle>
+                                <DialogContent>
+                                    <TextField type="text" value={newUser.user} placeholder="UserName" onChange={(e) => setNewUser({ ...newUser, user: e.target.value })} />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button variant="outlined" color="secondary" onClick={handleClose}>
+                                        Cancel
+                                    </Button>
+                                    <div className="padding">
+                                        <Button variant="outlined" color="primary" onClick={searchUser}>Confirm</Button>
+                                    </div>
+                                </DialogActions>
+                            </Dialog>
+                            <Button className='space' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
                         </div>
-
                     </div>
                 ))}
             </div>
