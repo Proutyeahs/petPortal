@@ -31,17 +31,11 @@ function AddPet() {
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
     const [open, setOpen] = useState(false);
     const [newSpecies, setNewSpecies] = useState({ name: '' });
-    const [image, setImage] = useState("")
 
-    const host = (e) => {
-        setImage(e.target.files[0])
-        uploadImage()
-    }
-
-    const uploadImage = () => {
-        console.log(image)
+    const uploadImage = (e) => {
+        console.log(e.target.files[0])
         const formData = new FormData();
-        formData.append("file", image)
+        formData.append("file", e.target.files[0])
         formData.append("upload_preset", "PetEats")
         axios.post("https://api.cloudinary.com/v1_1/dzyea2237/image/upload", formData).then((response) => {
             console.log('yo', response.data)
@@ -143,7 +137,7 @@ function AddPet() {
                     <TextField type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
                 </div>
                 <div className="padding">
-                    <TextField type="file" onChange={host} />
+                    <TextField type="file" onChange={uploadImage} />
                     {/* <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} /> */}
                 </div>
                 <div onClick={addPet} className="padding">
