@@ -15,6 +15,7 @@ function Admin() {
     const allFood = useSelector((store) => store.allFood)
     const allSpecies = useSelector((store) => store.allSpecies);
 
+    // collects information on page reload
     useEffect(() => {
         reload()
     }, [])
@@ -28,6 +29,7 @@ function Admin() {
         })
     }
 
+    // sends a delete request  to the corresponding saga
     const deleteFood = (id) => {
         console.log(id)
         dispatch({
@@ -36,6 +38,7 @@ function Admin() {
         })
     }
 
+     // sends a delete request  to the corresponding saga
     const deleteSpecies = (id) => {
         console.log(id)
         dispatch({
@@ -44,6 +47,7 @@ function Admin() {
         })
     }
 
+    // toggles approval for specific items to show up globally or not
     const approveFood = (food) => {
         dispatch({
             type: 'AUTHORIZE_FOOD',
@@ -51,6 +55,7 @@ function Admin() {
         })
     }
 
+    // toggles approval for specific items to show up globally or not
     const approveSpecies = (species) => {
         dispatch({
             type: 'AUTHORIZE_SPECIES',

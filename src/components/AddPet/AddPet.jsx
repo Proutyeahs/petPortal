@@ -17,6 +17,7 @@ import Select from '@material-ui/core/Select';
 
 import './AddPet.css'
 
+// gets species on page load
 function AddPet() {
     useEffect(() => {
         dispatch({ type: 'GET_SPECIES' })
@@ -25,13 +26,16 @@ function AddPet() {
     const dispatch = useDispatch();
     const history = useHistory()
 
+    // holds the data from the reducers
     const allSpecies = useSelector((store) => store.species);
     const species = useSelector((store) => store.newSpecies)
 
+    // local storage of info
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
     const [open, setOpen] = useState(false);
     const [newSpecies, setNewSpecies] = useState({ name: '' });
 
+    // uploads the chosen image to cloudinary then stores the image path to be sent to the database
     const uploadImage = (e) => {
         console.log(e.target.files[0])
         const formData = new FormData();
@@ -43,6 +47,7 @@ function AddPet() {
         })
     }
 
+    // handles open and closing of the confirmation pop up
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -50,6 +55,7 @@ function AddPet() {
         setOpen(false);
     };
 
+    // sends the pet data to the corresponding saga
     const addPet = () => {
         if (pet.name === '') {
             return alert('Please Enter a Name for your pet')
@@ -65,6 +71,7 @@ function AddPet() {
         setTimeout(() => { history.push('/') }, 500)
     }
 
+    // adds a new speices to the database
     const addSpecies = () => {
         console.log(newSpecies)
         setTimeout(() => {
@@ -78,6 +85,7 @@ function AddPet() {
         }, 500)
     }
 
+    // checks if values are empty and assignes them a default value
     const updateImage = () => {
         if (pet.species === '') {
             pet.species = 1

@@ -25,8 +25,8 @@ function AddFeeding() {
         dispatch({ type: 'GET_FOOD' })
     }, [])
 
+    // Saves the id so the page with display data upon page refresh
     let { id } = useParams()
-
     const reload = (id) => {
         console.log(id)
         dispatch({
@@ -35,13 +35,16 @@ function AddFeeding() {
         })
     }
 
+    // local state to hold info
     const [newFood, setNewFood] = useState({ food: '' })
     const [notes, setNotes] = useState({ pet_id: id, food: '', date: '', note: '' })
     const [open, setOpen] = React.useState(false);
 
+    // gets data from the reducers
     const allFoods = useSelector((store) => store.foods);
     const addedFood = useSelector((store) => store.addedFood)
 
+    // opens and closes popup menu
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -49,6 +52,7 @@ function AddFeeding() {
         setOpen(false);
     };
 
+    // send the new food to the corresponding saga
     const addFood = () => {
         console.log(setNewFood)
         dispatch({
@@ -59,6 +63,7 @@ function AddFeeding() {
         setNewFood({ food: '' })
     }
 
+    // sends the notes saved locally to the corresponding saga
     const addNotes = () => {
         console.log(notes)
         setTimeout(() => {
@@ -74,6 +79,7 @@ function AddFeeding() {
         }, 500)
     }
 
+    // checks if a value is empty and assigns it a default value
     const food = () => {
         if (notes.food === '') {
             notes.food = 1

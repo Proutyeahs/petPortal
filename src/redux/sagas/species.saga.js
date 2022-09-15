@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// sends a get request for all the species in the databse
 function* getSpecies() {
   try {
     const response = yield axios.get('/api/species');
@@ -10,6 +11,7 @@ function* getSpecies() {
   }
 }
 
+// sends a post request for a new species to be added to the database
 function* postNewSpecies(action) {
     console.log(action.payload)
     try {
@@ -22,6 +24,7 @@ function* postNewSpecies(action) {
     }
 }
 
+// sends a get request for a specific species
 function* getSpecificSpecies(action) {
   console.log(action.payload)
   try {
@@ -32,6 +35,7 @@ function* getSpecificSpecies(action) {
   }
 }
 
+// gets all the species for the global page
 function* getAllSpecies() {
   try {
     const response = yield axios.get('/api/allspecies');
@@ -41,6 +45,7 @@ function* getAllSpecies() {
   }
 }
 
+// sends a delete request for admins to remove species from the databse
 function* deleteSpecies(action) {
   console.log(action.payload)
   try{
@@ -51,6 +56,7 @@ function* deleteSpecies(action) {
   }
 }
 
+// sends the update to flag if a species is avalible to all users or not
 function* authorize(action) {
   console.log(action.payload)
   try {

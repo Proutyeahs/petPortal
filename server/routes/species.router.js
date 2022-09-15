@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// gets authorized species from the database
 router.get('/', (req, res) => {
   const query =`
     SELECT * FROM "species"
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
   })
 });
 
+// posts a new species to the database
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body.name)
     const query =`
@@ -41,6 +43,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// gets specific species from the database
 router.get('/:specific', (req, res) => {
   console.log(req.params)
   const query =`

@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// gets all the species in the database
 router.get('/', (req, res) => {
     const query =`
       SELECT * FROM "species"
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
     })
   });
 
+  // deletes a specific species from the database
   router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         DELETE FROM "species"
@@ -33,6 +35,7 @@ router.get('/', (req, res) => {
     })
 })
 
+// toggles the authorized or unauthorized column so only authorized species render for users
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('this', req.body)
     const query =`

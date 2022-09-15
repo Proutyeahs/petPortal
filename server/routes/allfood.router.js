@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// gets all the food info from the databse
 router.get('/', rejectUnauthenticated, (req, res) => {
     const query =`
       SELECT * FROM "foods"
@@ -20,6 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
   });
 
+  // deletes a specific food from the databse
   router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         DELETE FROM "foods"
@@ -33,6 +35,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// updates a food to be viewed by all user or not
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('this', req.body)
     const query =`

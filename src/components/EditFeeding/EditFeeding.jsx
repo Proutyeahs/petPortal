@@ -43,6 +43,7 @@ function EditFeeding() {
     const allFoods = useSelector((store) => store.foods);
     const addedFood = useSelector((store) => store.addedFood)
 
+    // handles pop up open and closing functions
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -57,6 +58,7 @@ function EditFeeding() {
         setOpen1(false);
     };
 
+    // sends an add request to the corresponding saga
     const addFood = () => {
         console.log(setNewFood)
         dispatch({
@@ -67,6 +69,7 @@ function EditFeeding() {
         setNewFood({ food: '' })
     }
 
+    // checks if any values are empty and then assignes them the previously input data
     const saveNotes = () => {
         for (let note of thisNote) {
             console.log("ugh", note)
@@ -94,6 +97,7 @@ function EditFeeding() {
         }
     }
 
+    // sends the edited data to the corresponding saga
     const editNotes = () => {
         setTimeout(() => {
             console.log(notes)
@@ -108,6 +112,7 @@ function EditFeeding() {
         }, 500)
     }
 
+    // sends a delete request to the corresponding saga
     const handleDelete = () => {
         let noteID = ''
         for (let note of thisNote) {

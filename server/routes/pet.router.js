@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// adds the new pet info to the database and assigns it a default image if its value is empty
 router.post('/', rejectUnauthenticated, (req, res) => {
     if (req.body.picture === '') {
         req.body.picture = 'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'
@@ -31,6 +32,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// gets the pets for a specific user
 router.get('/', rejectUnauthenticated, (req, res) => {
   const query =`
     SELECT * FROM "pets"
@@ -45,6 +47,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
+// gets the pet and its species from the database
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log(req.params.id)
     const query =`
@@ -61,6 +64,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// deletes a specific pet from the database and its assigned notes
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query1=`
         DELETE FROM "notes"
@@ -79,6 +83,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// updates a specific pets information
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log("sup", req.params.id)
     const query =`

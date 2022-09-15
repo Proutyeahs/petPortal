@@ -16,12 +16,14 @@ function UserPage() {
     })
   }, [])
 
+  // gets info from the reducer
   const pets = useSelector((store) => store.pet)
   const user = useSelector((store) => store.user);
 
   const history = useHistory()
   const dispatch = useDispatch()
 
+  // sends the user to the specific pet detail page
   const details = (id) => {
     console.log(id)
     dispatch({

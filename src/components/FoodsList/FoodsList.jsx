@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import './FoodsList.css'
 
 function FoodsList() {
+
+    // gets info upon page relaod
     useEffect(() => {
         reload(id)
     }, [])
@@ -27,6 +29,7 @@ function FoodsList() {
         })
     }
 
+    // displays the name of the specific type of pet
     const displayName = (id) => {
         for (let species of allSpecies) {
             console.log(species)
@@ -36,6 +39,7 @@ function FoodsList() {
         }
     }
 
+    // holds info from the reducers
     const dispatch = useDispatch()
     const petsFood = useSelector((store) => store.petsFood)
     const allSpecies = useSelector((store) => store.species);

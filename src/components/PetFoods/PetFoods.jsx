@@ -21,6 +21,7 @@ function PetFoods() {
 
     const [specific, setSpecificSpecies] = useState('')
 
+    // displays a message if user is not logged in
     const login = () => {
         // if (specific) {
         //     console.log(specific)
@@ -31,6 +32,7 @@ function PetFoods() {
         }
     }
 
+    // allows a user to seach the databse for a specific species
     const send = () => {
         if(specific == '') {
             return

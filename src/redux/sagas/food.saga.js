@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+
+// sends a get request for all the foods in the database
 function* getFood() {
     try {
         const response = yield axios.get('/api/food');
@@ -10,6 +12,7 @@ function* getFood() {
     }
 }
 
+// sends a data to the router for new foods to be posted to the database
 function* postNewFood(action) {
     console.log(action.payload)
     try {
@@ -21,6 +24,7 @@ function* postNewFood(action) {
     }
 }
 
+// sends a reqest to get the specifc food for a pet from the database
 function* getPetsFood(action) {
     console.log(action.payload)
     try {
@@ -31,6 +35,7 @@ function* getPetsFood(action) {
     }
 }
 
+// gets all the foods for a specifc species of pet
 function* getAllFood() {
     try {
       const response = yield axios.get('/api/allfood');
@@ -40,6 +45,7 @@ function* getAllFood() {
     }
   }
 
+  // sends a delete request remove food from the database
 function* deleteFood(action) {
     console.log(action.payload)
     try{
@@ -50,6 +56,7 @@ function* deleteFood(action) {
     }
 }
 
+// sends an update request to foods are viewable to other users
 function* authorize(action) {
     console.log(action.payload)
     try {

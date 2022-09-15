@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// gets all authorized food from the database
 router.get('/', rejectUnauthenticated, (req, res) => {
   const query =`
     SELECT * FROM "foods"
@@ -21,6 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
+// posts a new food to the database and gets the data for the user who requested the food to be added
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body.food)
     const query =`
@@ -41,6 +43,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// gets the name and count of all the foods fed to each species
 router.get('/:id', (req, res) => {
     const query =`
         SELECT "foods".food_name, COUNT("food_name") FROM "foods"

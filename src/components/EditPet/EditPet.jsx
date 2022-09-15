@@ -17,6 +17,8 @@ import Select from '@material-ui/core/Select';
 import './EditPet.css'
 
 function EditPet() {
+
+    // collects data upon page reload
     useEffect(() => {
         reload(id)
         dispatch({ type: 'GET_SPECIES' })
@@ -34,15 +36,18 @@ function EditPet() {
     const dispatch = useDispatch();
     const history = useHistory()
 
+    // gets info from the reducers
     const details = useSelector((store) => store.details)
     const allSpecies = useSelector((store) => store.species);
     const species = useSelector((store) => store.newSpecies)
 
+    // storage for local info
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '', id: id })
     const [newSpecies, setNewSpecies] = React.useState({ name: '' });
 
+    // uploads the selected image to clodinary and saves the file path to be send to the database
     const uploadImage = (e) => {
         console.log(e.target.files[0])
         const formData = new FormData();
@@ -54,6 +59,7 @@ function EditPet() {
         })
     }
 
+    // checks if any value is empty and assignes it the previously input information
     const editPet = () => {
         for (let detail of details) {
             console.log("ugh", detail)
@@ -81,6 +87,7 @@ function EditPet() {
         }
     }
 
+    // sends the edited data to the corresponding saga
     const done = () => {
         console.log(pet)
         setTimeout(() => {
@@ -95,6 +102,7 @@ function EditPet() {
         }, 500)
     }
 
+    // handles the open and close functionality of pop up windows
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -109,6 +117,7 @@ function EditPet() {
         setOpen1(false);
     };
 
+    // sends an add species request to the corresponding saga
     const addSpecies = () => {
         console.log(newSpecies)
         dispatch({
@@ -120,6 +129,7 @@ function EditPet() {
         setPet({ ...pet, species: '' })
     }
 
+    // sends a delete request to the corresponding saga
     const handleDelete = (id) => {
         console.log(id)
         dispatch({

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// sends updated info to the correspodning pet router
 function* editPet(action) {
     console.log(action.payload)
     try {
@@ -11,6 +12,7 @@ function* editPet(action) {
     }
 }
 
+// sends delete request to the correspoinding router
 function* deletePet(action) {
     console.log(action.payload)
     try{
@@ -21,6 +23,7 @@ function* deletePet(action) {
     }
 }
 
+// sends a get request for the pets details
 function* getDetails(action) {
     try{
         const details = yield axios.get(`/api/pet/${action.payload}`)
@@ -30,6 +33,7 @@ function* getDetails(action) {
     }
 }
 
+// sends a get request for the pets for a user
 function* getPet() {
     try{
         const pets = yield axios.get('/api/pet')
@@ -39,6 +43,7 @@ function* getPet() {
     }
 }
 
+// sends data for a new pet to be added to the database
 function* postPet(action) {
     console.log(action.payload)
   try {

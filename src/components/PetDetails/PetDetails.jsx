@@ -19,6 +19,7 @@ import TextField from '@material-ui/core/TextField';
 
 function PetDetails() {
 
+    // gets info upon page reload
     useEffect(() => {
         reload(id)
     }, [])
@@ -36,6 +37,7 @@ function PetDetails() {
         })
     }
 
+    // holds data locally
     const history = useHistory()
     const dispatch = useDispatch()
     const details = useSelector((store) => store.details)
@@ -44,11 +46,13 @@ function PetDetails() {
     const [open, setOpen] = useState(false);
     const [newUser, setNewUser] = useState({ user: '', id: id })
 
+    // sends user to the edit pet page
     const handleEdit = (id) => {
         console.log(id)
         history.push(`/editpet/${id}`)
     }
 
+    // sends user to the edit note page
     const thisNote = (note_id) => {
         console.log(note_id)
         dispatch({
@@ -58,6 +62,7 @@ function PetDetails() {
         history.push(`/editfeeding/${note_id}`)
     }
 
+    // handles open close functionality
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -65,6 +70,7 @@ function PetDetails() {
         setOpen(false);
     };
 
+    // adds a user so they can view a pet from their account
     const searchUser = () => {
         dispatch({
             type: 'ADD_USER',

@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// posts a new note for a pet to the database
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body)
     const query =`
@@ -20,6 +21,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// gets all the notes for a specific pet from the databse
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log(req.params.id)
     const query =`
@@ -39,6 +41,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// updates a specific note
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log("note", req.body)
     const query =`
@@ -55,6 +58,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// get the info for a specific note from the database
 router.get('/this/:id', rejectUnauthenticated, (req, res) => {
     console.log("wow", req.params.id)
     const query =`
@@ -69,6 +73,7 @@ router.get('/this/:id', rejectUnauthenticated, (req, res) => {
     })
 })
 
+// deletes a specific note from the databse
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         DELETE FROM "notes"

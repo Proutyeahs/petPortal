@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// sends note data to the router to be posted to the database
 function* postNote(action) {
     console.log(action.payload)
   try {
@@ -11,6 +12,7 @@ function* postNote(action) {
   }
 }
 
+// sends a get request for the corresponding pet notes
 function* getNotes(action) {
     console.log(action.payload)
     try{
@@ -21,6 +23,7 @@ function* getNotes(action) {
     }
 }
 
+// sends an update request for the corresponding note
 function* editNote(action) {
     console.log(action.payload)
     try {
@@ -31,6 +34,7 @@ function* editNote(action) {
     }
 }
 
+// gets a single notes data
 function* getThisNote(action) {
     console.log(action.payload)
     try{
@@ -42,6 +46,7 @@ function* getThisNote(action) {
     }
 }
 
+// sends a delelte request to the corresponding router
 function* deleteNote(action) {
     console.log(action.payload)
     try{

@@ -6,6 +6,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+// updates the pets table to authorize another user to view the pet
 router.put('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body.user)
     const query =`

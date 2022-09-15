@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+// sends data to the router so a new user can view this pet
 function* addUser(action) {
     console.log(action.payload)
     try {
