@@ -84,7 +84,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     const query =`
         UPDATE "pets"
         SET "name" = $1, "picture" = $2, "description" = $3, "birthday" = $4, "species_id" = $5
-        WHERE ("id" = $6 AND "user_id" = $7)
+        WHERE ("id" = $6 AND ("pets".user_id = $7 OR "pets".authorized_user = $7))
     ;`;
     pool.query(query, [req.body.name, req.body.picture, req.body.description, req.body.birthday, req.body.species, req.body.id, req.user.id])
     .then(result => {

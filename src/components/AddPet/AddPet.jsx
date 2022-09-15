@@ -38,8 +38,8 @@ function AddPet() {
         formData.append("file", e.target.files[0])
         formData.append("upload_preset", "PetEats")
         axios.post("https://api.cloudinary.com/v1_1/dzyea2237/image/upload", formData).then((response) => {
-            console.log('yo', response.data)
             setPet({ ...pet, picture: response.data.url })
+            console.log('yo', response.data)
         })
     }
 

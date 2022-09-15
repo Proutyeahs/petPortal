@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -41,6 +42,17 @@ function EditPet() {
     const [open1, setOpen1] = React.useState(false);
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '', id: id })
     const [newSpecies, setNewSpecies] = React.useState({ name: '' });
+
+    const uploadImage = (e) => {
+        console.log(e.target.files[0])
+        const formData = new FormData();
+        formData.append("file", e.target.files[0])
+        formData.append("upload_preset", "PetEats")
+        axios.post("https://api.cloudinary.com/v1_1/dzyea2237/image/upload", formData).then((response) => {
+            setPet({ ...pet, picture: response.data.url })
+            console.log('yo', response.data)
+        })
+    }
 
     const editPet = () => {
         for (let detail of details) {
@@ -165,7 +177,8 @@ function EditPet() {
                     <TextField type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
                 </div>
                 <div className="padding">
-                    <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
+                    <TextField type="file" onChange={uploadImage} />
+                    {/* <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} /> */}
                 </div>
                 <div className="padding" onClick={done}>
                     <Button variant="outlined" color="primary" onClick={editPet}>Save Edits</Button>
