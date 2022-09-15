@@ -1,4 +1,5 @@
 
+import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -28,8 +29,19 @@ function AddPet() {
     const species = useSelector((store) => store.newSpecies)
 
     const [pet, setPet] = useState({ name: '', picture: '', description: '', birthday: '', species: '' })
-    const [open, setOpen] = React.useState(false);
-    const [newSpecies, setNewSpecies] = React.useState({ name: '' });
+    const [open, setOpen] = useState(false);
+    const [newSpecies, setNewSpecies] = useState({ name: '' });
+
+    const uploadImage = (e) => {
+        console.log(e.target.files[0])
+        const formData = new FormData();
+        formData.append("file", e.target.files[0])
+        formData.append("upload_preset", "PetEats")
+        axios.post("https://api.cloudinary.com/v1_1/dzyea2237/image/upload", formData).then((response) => {
+            setPet({ ...pet, picture: response.data.url })
+            console.log('yo', response.data)
+        })
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -62,7 +74,7 @@ function AddPet() {
             })
             handleClose()
             setNewSpecies({ name: '' })
-            setPet({...pet, species : ''})
+            setPet({ ...pet, species: '' })
         }, 500)
     }
 
@@ -125,7 +137,8 @@ function AddPet() {
                     <TextField type="text" value={pet.description} placeholder="Description" onChange={(e) => setPet({ ...pet, description: e.target.value })} />
                 </div>
                 <div className="padding">
-                    <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} />
+                    <TextField type="file" onChange={uploadImage} />
+                    {/* <TextField type="text" value={pet.picture} placeholder="Image URL" onChange={(e) => setPet({ ...pet, picture: e.target.value })} /> */}
                 </div>
                 <div onClick={addPet} className="padding">
                     <Button variant="outlined" color="primary" onClick={updateImage}>Add Pet</Button>
