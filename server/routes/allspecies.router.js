@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     })
 });
 
-// deletes a specific species from the database
+// deletes a specific species from the database and changes the the default value to 1
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const put = `
         UPDATE "pets"
