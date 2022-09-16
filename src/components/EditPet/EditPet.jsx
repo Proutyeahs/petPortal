@@ -15,6 +15,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import './EditPet.css'
+import userReducer from '../../redux/reducers/user.reducer';
 
 function EditPet() {
 
@@ -40,6 +41,7 @@ function EditPet() {
     const details = useSelector((store) => store.details)
     const allSpecies = useSelector((store) => store.species);
     const species = useSelector((store) => store.newSpecies)
+    const user = useSelector((store) => store.user);
 
     // storage for local info
     const [open, setOpen] = React.useState(false);
@@ -193,9 +195,11 @@ function EditPet() {
                 <div className="padding" onClick={done}>
                     <Button variant="outlined" color="primary" onClick={editPet}>Save Edits</Button>
                 </div>
-                <div className="padding">
-                    <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Pet</Button>
-                </div>
+                {user.id === details[0].user_id &&
+                    <div className="padding">
+                        <Button variant="outlined" color="secondary" onClick={handleClickOpen1}>Delete Pet</Button>
+                    </div>
+                }
                 <Dialog open={open1} onClose={handleClose1}>
                     <DialogTitle className='center'>Are you sure you want to Delete this Pet?</DialogTitle>
                     <DialogActions>
