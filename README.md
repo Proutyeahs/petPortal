@@ -17,6 +17,7 @@ npm run client in your terminal
 ## Deployment
 
 Link to deployed app:
+https://sleepy-lowlands-14154.herokuapp.com/#/home
 
 ## Built With
 React.js
