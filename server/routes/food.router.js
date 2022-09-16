@@ -52,7 +52,8 @@ router.get('/:id', (req, res) => {
         JOIN "pets"
         ON "pets".id = "notes".pets_id
         WHERE ("pets".species_id = $1 AND "authorized" = true)
-        GROUP BY "foods".food_name;
+        GROUP BY "foods".food_name
+        ORDER BY COUNT("food_name") DESC
     ;`;
     pool.query(query, [req.params.id]).then(result => {
       console.log("food", result.rows)

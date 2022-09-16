@@ -51,7 +51,7 @@ function PetFoods() {
             </div>
             <div className="center">
                 {thisSpecies.map(thisSpecies => (
-                    <Card onClick={() => history.push(`/foodslist/${thisSpecies.id}`)} className="div1" key={thisSpecies.id} value={thisSpecies.id}>
+                    <Card onClick={() => history.push(`/foodslist/${thisSpecies.id}`)} className="div2" key={thisSpecies.id} value={thisSpecies.id}>
                         <div className='text'>{thisSpecies.species_name}</div>
                         <CardMedia className="img1" image={'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'} />
                     </Card>
@@ -60,7 +60,7 @@ function PetFoods() {
             </div>
             <div className="container">
                 {allSpecies.map(species => (
-                    <Card onClick={() => history.push(`/foodslist/${species.id}`)} className="div1" key={species.id} value={species.id}>
+                    <Card onClick={() => history.push(`/foodslist/${species.id}`)} className="div2" key={species.id} value={species.id}>
                         <div className='text'>{species.species_name}</div>
                         <CardMedia className="img1" image={'https://res.cloudinary.com/dzyea2237/image/upload/v1662655423/logo_xqynsk.png'} />
                     </Card>
