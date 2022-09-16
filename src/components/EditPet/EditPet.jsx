@@ -15,7 +15,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import './EditPet.css'
-import userReducer from '../../redux/reducers/user.reducer';
 
 function EditPet() {
 

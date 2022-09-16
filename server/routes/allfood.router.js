@@ -21,7 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
-// deletes a specific food from the databse
+// deletes a specific food from the databse and changes the the default value to 1
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const put = `
         UPDATE "notes"
