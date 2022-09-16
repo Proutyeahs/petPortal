@@ -15,6 +15,15 @@
     width: auto;
 }
 
+
+.div1:hover {
+    position: absolute;
+    left: 99px;
+    top: 150px;
+    transform: scale(2.0);
+    z-index: 3;
+}
+
 .inline {
     padding: 10px;
     vertical-align: top;

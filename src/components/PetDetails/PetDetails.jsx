@@ -95,7 +95,7 @@ function PetDetails() {
                         <p className='outline'>{detail.description}</p>
 
                         <div className='padding'>
-                            <Button className='space' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
+                            <Button className='space' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
                             <Button className='space' variant="outlined" onClick={handleClickOpen}>Add User</Button>
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle className='center'>Allow another user to view this pet</DialogTitle>
@@ -111,7 +111,7 @@ function PetDetails() {
                                     </div>
                                 </DialogActions>
                             </Dialog>
-                            <Button className='space' variant="outlined" color="secondary" onClick={() => handleEdit(id)}>Edit Pet</Button>
+                            <Button className='space' variant="outlined" color="primary" onClick={() => history.push(`/addfeeding/${id}`)}>Add Feeding</Button>
                         </div>
                     </div>
                 ))}
