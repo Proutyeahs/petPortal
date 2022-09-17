@@ -37,7 +37,7 @@ function AddFeeding() {
 
     // local state to hold info
     const [newFood, setNewFood] = useState({ food: '' })
-    const [notes, setNotes] = useState({ pet_id: id, food: '', date: '', note: '' })
+    const [notes, setNotes] = useState({ pet_id: id, food: '', date: '', note: '', time: ''})
     const [open, setOpen] = React.useState(false);
 
     // gets data from the reducers
@@ -130,6 +130,10 @@ function AddFeeding() {
                     <div className="padding1">
                         <p className='outline'>Date:</p>
                         <TextField type="date" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
+                    </div>
+                    <div className="padding1">
+                        <p className='outline'>Time:</p>
+                        <TextField type="time" value={notes.time} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, time: e.target.value })} />
                     </div>
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />

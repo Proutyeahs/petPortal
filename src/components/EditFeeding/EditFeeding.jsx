@@ -35,7 +35,7 @@ function EditFeeding() {
     }
 
     const [newFood, setNewFood] = useState({ food: '' })
-    const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID: '' })
+    const [notes, setNotes] = useState({ id: '', food: '', date: '', note: '', petID: '', time: ''})
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
 
@@ -90,6 +90,9 @@ function EditFeeding() {
             }
             if (notes.date === '') {
                 notes.date = note.date
+            }
+            if (notes.time === '') {
+                notes.time = note.time
             }
             if (notes.note === '') {
                 notes.note = note.notes
@@ -167,6 +170,10 @@ function EditFeeding() {
                     <p className='outline'>Date:</p>
                     <div className="padding1">
                         <TextField type="date" value={notes.date} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, date: e.target.value })} />
+                    </div>
+                    <div className="padding1">
+                        <p className='outline'>Time:</p>
+                        <TextField type="time" value={notes.time} placeholder="Date/Time" onChange={(e) => setNotes({ ...notes, time: e.target.value })} />
                     </div>
                     <div className="padding1">
                         <TextField type="text" value={notes.note} placeholder="Notes" onChange={(e) => setNotes({ ...notes, note: e.target.value })} />

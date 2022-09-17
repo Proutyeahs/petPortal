@@ -10,9 +10,9 @@ const router = express.Router();
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body)
     const query =`
-    INSERT INTO "notes" ("pets_id", "foods_id", "date", "notes", "user_id")
-        VALUES ($1, $2, $3, $4, $5);`;
-    pool.query(query, [req.body.pet_id, req.body.food, req.body.date, req.body.note, req.user.id])
+    INSERT INTO "notes" ("pets_id", "foods_id", "date", "notes", "user_id", "time")
+        VALUES ($1, $2, $3, $4, $5, $6);`;
+    pool.query(query, [req.body.pet_id, req.body.food, req.body.date, req.body.note, req.user.id, req.body.time])
     .then( result => {
         res.sendStatus(201);
     }).catch (err => {
@@ -46,10 +46,10 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log("note", req.body)
     const query =`
         UPDATE "notes"
-        SET "foods_id" = $1, "date" = $2, "notes" = $3
+        SET "foods_id" = $1, "date" = $2, "notes" = $3, "time" = $6
         WHERE ("id" = $4 AND "user_id" = $5)
     ;`;
-    pool.query(query, [req.body.food, req.body.date, req.body.note, req.body.id, req.user.id])
+    pool.query(query, [req.body.food, req.body.date, req.body.note, req.body.id, req.user.id, req.body.time])
     .then(result => {
         res.sendStatus(200)
     }).catch( err => {

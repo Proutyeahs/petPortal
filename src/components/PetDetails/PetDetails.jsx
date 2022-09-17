@@ -137,6 +137,8 @@ function PetDetails() {
                                 </TableCell>
                                 <TableCell>
                                     {note.date}
+                                    <br></br>
+                                    {note.time}
                                 </TableCell>
                             </TableRow>
                             <TableRow className='gray'>
