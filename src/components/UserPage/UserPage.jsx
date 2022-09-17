@@ -36,8 +36,6 @@ function UserPage() {
   return (
     <div className="container">
       <h2 className='outline'>Welcome, {user.username}!</h2>
-      {/* <p>Your ID is: {user.id}</p> */}
-      {/* <LogOutButton className="btn" /> */}
       <div className='padding2'>
         <Button variant="outlined" color="primary" onClick={() => history.push('/addpet')}>Add Pet</Button>
       </div>
@@ -47,6 +45,8 @@ function UserPage() {
             <CardMedia className="img" image={pet.picture} />
         </Card>
       ))}
+      {pets == '' &&
+      <h4 className='outline'>Add a pet to get started!</h4>}
     </div>
   );
 }
