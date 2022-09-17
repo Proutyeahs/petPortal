@@ -11,8 +11,17 @@ function* addUser(action) {
     }
 }
 
+function* removeUser(action) {
+    try {
+        yield axios.put('/api/addUser/remove', action.payload)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 function* addUserSaga() {
    yield takeLatest('ADD_USER', addUser)
+   yield takeLatest('REMOVE_USER', removeUser)
 }
 
 export default addUserSaga;

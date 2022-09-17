@@ -79,6 +79,17 @@ function PetDetails() {
         handleClose()
     }
 
+    const removeUser = () => {
+        dispatch({
+            type: 'REMOVE_USER',
+            payload: {id : id }
+        })
+        handleClose()
+        setTimeout(() => {
+            history.goBack()
+        }, 500)
+    }
+
     return (
         <>
             <div className="container">
@@ -105,6 +116,9 @@ function PetDetails() {
                                 <DialogActions>
                                     <Button variant="outlined" color="secondary" onClick={handleClose}>
                                         Cancel
+                                    </Button>
+                                    <Button variant="outlined" onClick={removeUser}>
+                                        Remove
                                     </Button>
                                     <div className="padding">
                                         <Button variant="outlined" color="primary" onClick={searchUser}>Confirm</Button>
