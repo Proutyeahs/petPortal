@@ -18,6 +18,7 @@ npm run client
 
 Link to deployed app:
 https://sleepy-lowlands-14154.herokuapp.com/#/home
+
 An example account is accessible with the username mom and password qwerty
 
 ## Built With
